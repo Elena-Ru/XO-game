@@ -9,7 +9,18 @@ import UIKit
 
 class RootView: UIView {
     
-  //  var gameboardView: GameboardView
+    var scroll: UIScrollView = {
+        let sv = UIScrollView()
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.contentSize = CGSize(width: 400, height: 2300)
+        return sv
+    }()
+    
+    var gameboardView : GameboardView = {
+        let view = GameboardView()
+        view.backgroundColor = .white
+        return view
+    }()
     
     let firstPlayerTurnLabel: CustomPlayerLabel = {
         let label = CustomPlayerLabel(title: "Player1")
@@ -26,8 +37,8 @@ class RootView: UIView {
         return label
     }()
     
-    let restartButton: PurpleButton = {
-        let btn = PurpleButton(title: "Restart")
+    let restartButton: RoundedGreenButton = {
+        let btn = RoundedGreenButton(title: "Restart")
         return btn
     }()
     
@@ -41,18 +52,26 @@ class RootView: UIView {
     }
     
     private func setupLayout() {
-        self.addSubview(firstPlayerTurnLabel)
-        self.addSubview(secondPlayerTurnLabel)
-        self.addSubview(winnerLabel)
-        self.addSubview(restartButton)
+        self.addSubview(scroll)
+        scroll.addSubview(firstPlayerTurnLabel)
+        scroll.addSubview(secondPlayerTurnLabel)
+        scroll.addSubview(winnerLabel)
+        scroll.addSubview(gameboardView)
+        scroll.addSubview(restartButton)
         
         NSLayoutConstraint.activate([
-            firstPlayerTurnLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
-            firstPlayerTurnLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            
+            scroll.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            scroll.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            scroll.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            scroll.heightAnchor.constraint(equalToConstant: 1200),
+            
+            firstPlayerTurnLabel.topAnchor.constraint(equalTo: scroll.topAnchor, constant: 20),
+            firstPlayerTurnLabel.leadingAnchor.constraint(equalTo: scroll.leadingAnchor, constant: 20),
             firstPlayerTurnLabel.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.4),
             firstPlayerTurnLabel.heightAnchor.constraint(equalToConstant: 20),
             
-            secondPlayerTurnLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
+            secondPlayerTurnLabel.topAnchor.constraint(equalTo: scroll.topAnchor, constant: 20),
             secondPlayerTurnLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             secondPlayerTurnLabel.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.4),
             secondPlayerTurnLabel.heightAnchor.constraint(equalToConstant: 20),
@@ -62,7 +81,12 @@ class RootView: UIView {
             winnerLabel.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.8),
             winnerLabel.heightAnchor.constraint(equalToConstant: 20),
             
-            restartButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            gameboardView.topAnchor.constraint(equalTo: winnerLabel.bottomAnchor, constant: 40),
+            gameboardView.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            gameboardView.heightAnchor.constraint(equalToConstant: 300),
+            gameboardView.widthAnchor.constraint(equalToConstant: 300),
+            
+            restartButton.topAnchor.constraint(equalTo: gameboardView.bottomAnchor, constant: 100),
             restartButton.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             restartButton.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.5),
             restartButton.heightAnchor.constraint(equalToConstant: 40)

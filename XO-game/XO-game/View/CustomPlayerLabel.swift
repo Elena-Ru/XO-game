@@ -14,7 +14,7 @@ class CustomPlayerLabel: UILabel {
     
      init(title: String) {
         super.init(frame: .zero)
-        textColor = .white
+        textColor = .darkGray
         text = title
         font = UIFont.systemFont(ofSize: 18)
         textAlignment = .center

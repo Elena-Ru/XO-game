@@ -13,7 +13,7 @@ class CustomWinnerLabel: UILabel {
     
      init(title: String) {
         super.init(frame: .zero)
-        textColor = .white
+        textColor = .black
         text = title
         font = UIFont.boldSystemFont(ofSize: 20)
         textAlignment = .center
