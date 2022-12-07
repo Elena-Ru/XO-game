@@ -39,7 +39,8 @@ class MainViewController: UIViewController {
     }
     
     private func goToFirstState() {
-        self.currentState = PlayerInputState(player: .first, gameVC: self, gameboard: gameboard, gameboardView: rootView.gameboardView)
+        let player = Player.first
+        self.currentState = PlayerInputState(player: .first, markViewPrototype: player.markViewPrototype , gameVC: self, gameboard: gameboard, gameboardView: rootView.gameboardView)
     }
     
     private func goToNextState() {
@@ -52,7 +53,8 @@ class MainViewController: UIViewController {
         }
 
         if let playerInputState = currentState as? PlayerInputState {
-            self.currentState = PlayerInputState(player: playerInputState.player.next, gameVC: self, gameboard: gameboard, gameboardView: rootView.gameboardView)
+            let player = playerInputState.player.next
+            self.currentState = PlayerInputState(player: playerInputState.player.next, markViewPrototype: player.markViewPrototype, gameVC: self, gameboard: gameboard, gameboardView: rootView.gameboardView)
         }
     }
     
