@@ -22,7 +22,7 @@ public class GameEndedState: GameState {
         
         self.gameVC?.rootView.winnerLabel.isHidden = false
         if let winner = winner {
-            self.gameVC?.rootView.winnerLabel.text = self.getWinnerName(from: winner) + "win"
+            self.gameVC?.rootView.winnerLabel.text = self.getWinnerName(from: winner) + " win"
         } else {
             
             self.gameVC?.rootView.winnerLabel.text = "No winner"

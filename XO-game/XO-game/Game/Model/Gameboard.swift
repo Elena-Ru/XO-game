@@ -11,8 +11,8 @@ public final class Gameboard {
     
     // MARK: - Properties
     
-    private lazy var positions: [[Player?]] = initialPositions()
-    
+    public lazy var positions: [[Player?]] = initialPositions()
+
     // MARK: - public
     
     public func setPlayer(_ player: Player, at position: GameboardPosition) {

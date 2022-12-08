@@ -24,12 +24,19 @@ class MainViewController: UIViewController {
     }
 
     @objc func gameWithPC () {
-        print("Game with pc")
+        print("Game with AI")
+        let vc = GameViewController()
+        vc.gameMode = .withAI
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true)
     }
     
     @objc func gameWithHuman () {
         print("Game with human")
-        let navigationController = UINavigationController(rootViewController: GameViewController())
+        let vc = GameViewController()
+        vc.gameMode = .withHuman
+        let navigationController = UINavigationController(rootViewController: vc)
         navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true)
     }

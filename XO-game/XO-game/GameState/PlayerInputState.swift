@@ -25,13 +25,18 @@ class PlayerInputState: GameState {
     }
     
     public func begin() {
-        switch self.player {
-        case .first:
+        if gameVC?.gameMode == .withHuman{
+            switch self.player {
+            case .first:
+                self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = false
+                self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
+            case .second:
+                self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
+                self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = false
+            }
+        } else {
             self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = false
             self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
-        case .second:
-            self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
-            self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = false
         }
         self.gameVC?.rootView.winnerLabel.isHidden = true
     }

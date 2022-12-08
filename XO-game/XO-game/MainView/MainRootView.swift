@@ -22,7 +22,7 @@ class MainRootView: UIView {
     }()
     
     let gameWithPCButton: RoundedGreenButton = {
-        let btn = RoundedGreenButton(title: "Game with PC")
+        let btn = RoundedGreenButton(title: "Game with AI")
         return btn
     }()
         
