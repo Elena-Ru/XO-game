@@ -11,14 +11,15 @@ public class GameEndedState: GameState {
 
     public let isCompleted = false
     public let winner: Player?
-    private(set) weak var gameVC: MainViewController?
+    private(set) weak var gameVC: GameViewController?
     
-    init(winner: Player?, gameVC: MainViewController) {
+    init(winner: Player?, gameVC: GameViewController) {
         self.winner = winner
         self.gameVC = gameVC
     }
     
     public func begin() {
+        
         self.gameVC?.rootView.winnerLabel.isHidden = false
         if let winner = winner {
             self.gameVC?.rootView.winnerLabel.text = self.getWinnerName(from: winner) + "win"
@@ -28,6 +29,7 @@ public class GameEndedState: GameState {
         }
         self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
         self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
+        log(.gameFinished(winner: self.winner))
     }
     
     private func getWinnerName( from winner: Player) -> String {
