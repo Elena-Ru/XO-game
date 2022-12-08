@@ -10,14 +10,15 @@ import UIKit
 class GameViewController: UIViewController {
 
     var rootView = RootView()
-    private let gameboard = Gameboard()
+    var gameMode: GameMode = .withHuman
+    private lazy var gameboard = Gameboard()
     private var currentState: GameState! {
         didSet {
             self.currentState.begin()
         }
     }
     private lazy var referee = Referee(gameboard: self.gameboard)
-   
+    
    override func loadView() {
        super.loadView()
        view = rootView
@@ -43,7 +44,7 @@ class GameViewController: UIViewController {
         self.currentState = PlayerInputState(player: .first, markViewPrototype: player.markViewPrototype , gameVC: self, gameboard: gameboard, gameboardView: rootView.gameboardView)
     }
     
-    private func goToNextState() {
+    public func goToNextState() {
         if let winner = self.referee.determineWinner() {
             self.currentState = GameEndedState(winner: winner, gameVC: self)
             return
@@ -52,10 +53,24 @@ class GameViewController: UIViewController {
                 return
         }
 
-        if let playerInputState = currentState as? PlayerInputState {
-            let player = playerInputState.player.next
-            self.currentState = PlayerInputState(player: playerInputState.player.next, markViewPrototype: player.markViewPrototype, gameVC: self, gameboard: gameboard, gameboardView: rootView.gameboardView)
+        if gameMode == .withHuman {
+            if let playerInputState = currentState as? PlayerInputState {
+                let player = playerInputState.player.next
+                self.currentState = PlayerInputState(player: playerInputState.player.next, markViewPrototype: player.markViewPrototype, gameVC: self, gameboard: gameboard, gameboardView: rootView.gameboardView)
+            }
+        } else {
+            
+            if let playerInputState = currentState as? PlayerInputState {
+                let player = playerInputState.player.next
+                self.currentState = AIInputState(isCompleted: false, markViewPrototype: player.markViewPrototype, player: playerInputState.player.next, gameVC: self, gameboard: gameboard, gameboardView: rootView.gameboardView)
+            }
+            if let playerInputState = currentState as? AIInputState {
+                let player = playerInputState.player.next
+                self.currentState = PlayerInputState( player: playerInputState.player.next, markViewPrototype: player.markViewPrototype, gameVC: self, gameboard: gameboard, gameboardView: rootView.gameboardView)
+            }
+            
         }
+        
     }
     
     @objc private func restartAction(){

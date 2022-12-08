@@ -32,8 +32,8 @@ class RootView: UIView {
         return label
     }()
     
-    let winnerLabel: CustomWinnerLabel = {
-        let label = CustomWinnerLabel(title: "The winner is Player1")
+    let winnerLabel: BoldBlackLabel = {
+        let label = BoldBlackLabel(title: "The winner is Player1")
         return label
     }()
     
