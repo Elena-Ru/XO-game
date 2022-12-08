@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class CustomWinnerLabel: UILabel {
+class BoldBlackLabel: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
