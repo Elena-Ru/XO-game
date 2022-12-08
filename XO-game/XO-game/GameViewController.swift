@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class GameViewController: UIViewController {
 
     var rootView = RootView()
     private let gameboard = Gameboard()
@@ -59,6 +59,7 @@ class MainViewController: UIViewController {
     }
     
     @objc private func restartAction(){
+        log(.restartGame)
         print("RESTART GAME ")
     }
 
