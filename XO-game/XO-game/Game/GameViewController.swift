@@ -27,7 +27,6 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.goToFirstState()
-        
         view.backgroundColor = .white
         rootView.gameboardView.onSelectPosition = { [weak self] position in
             guard let self = self else { return }

@@ -31,6 +31,11 @@ class MainRootView: UIView {
         return btn
     }()
     
+    let blindGameButton: RoundedGreenButton = {
+        let btn = RoundedGreenButton(title: "Blind Game")
+        return btn
+    }()
+    
     init() {
         super.init(frame: CGRect())
         backgroundColor = .white
@@ -48,11 +53,12 @@ class MainRootView: UIView {
     
     private func setupButtons() {
         
-        let controlsStackView = UIStackView(arrangedSubviews: [gameWithPCButton, gameWithHumanButton])
+        let controlsStackView = UIStackView(arrangedSubviews: [gameWithPCButton, gameWithHumanButton, blindGameButton ])
         controlsStackView.translatesAutoresizingMaskIntoConstraints = false
         controlsStackView.distribution = .fillEqually
-        controlsStackView.setCustomSpacing(20, after: gameWithPCButton)
-        controlsStackView.setCustomSpacing(20, after: gameWithHumanButton)
+        controlsStackView.setCustomSpacing(15, after: gameWithPCButton)
+        controlsStackView.setCustomSpacing(15, after: gameWithHumanButton)
+        controlsStackView.setCustomSpacing(15, after: blindGameButton)
         controlsStackView.axis = .vertical
         
         addSubview(controlsStackView)
@@ -60,8 +66,8 @@ class MainRootView: UIView {
         NSLayoutConstraint.activate([
             controlsStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             controlsStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -40),
-            controlsStackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7) ,
-            controlsStackView.heightAnchor.constraint(equalToConstant: 100)
+            controlsStackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6) ,
+            controlsStackView.heightAnchor.constraint(equalToConstant: 130)
         ])
     }
     
