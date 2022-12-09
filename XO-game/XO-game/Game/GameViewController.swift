@@ -75,9 +75,10 @@ class GameViewController: UIViewController {
     
     @objc private func restartAction(){
         log(.restartGame)
-        print("RESTART GAME ")
+        gameboard.clear()
+        rootView.gameboardView.clear()
+        self.goToFirstState()
     }
-
 
 }
 
