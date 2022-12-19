@@ -8,5 +8,5 @@
 import Foundation
 
 enum GameMode {
-    case withAI, withHuman
+    case withAI, withHuman, blindGame
 }

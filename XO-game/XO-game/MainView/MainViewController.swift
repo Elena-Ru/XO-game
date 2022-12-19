@@ -21,6 +21,7 @@ class MainViewController: UIViewController {
         
         rootView.gameWithPCButton.addTarget(self, action: #selector(gameWithPC), for: .touchUpInside)
         rootView.gameWithHumanButton.addTarget(self, action: #selector(gameWithHuman), for: .touchUpInside)
+        rootView.blindGameButton.addTarget(self, action: #selector(blindGame), for: .touchUpInside)
     }
 
     @objc func gameWithPC () {
@@ -36,6 +37,15 @@ class MainViewController: UIViewController {
         print("Game with human")
         let vc = GameViewController()
         vc.gameMode = .withHuman
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true)
+    }
+    
+    @objc func blindGame () {
+        print("Blind game")
+        let vc = GameViewController()
+        vc.gameMode = .blindGame
         let navigationController = UINavigationController(rootViewController: vc)
         navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true)

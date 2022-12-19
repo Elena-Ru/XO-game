@@ -41,6 +41,10 @@ class RootView: UIView {
         let btn = RoundedGreenButton(title: "Restart")
         return btn
     }()
+    let nextButton: RightArrowButton = {
+        let btn = RightArrowButton()
+        return btn
+    }()
     
     init() {
         super.init(frame: CGRect())
@@ -56,6 +60,7 @@ class RootView: UIView {
         scroll.addSubview(firstPlayerTurnLabel)
         scroll.addSubview(secondPlayerTurnLabel)
         scroll.addSubview(winnerLabel)
+        scroll.addSubview(nextButton)
         scroll.addSubview(gameboardView)
         scroll.addSubview(restartButton)
         
@@ -80,6 +85,11 @@ class RootView: UIView {
             winnerLabel.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             winnerLabel.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.8),
             winnerLabel.heightAnchor.constraint(equalToConstant: 20),
+            
+            nextButton.topAnchor.constraint(equalTo: secondPlayerTurnLabel.bottomAnchor, constant: 20),
+            nextButton.trailingAnchor.constraint(equalTo: secondPlayerTurnLabel.trailingAnchor, constant: -60),
+            nextButton.widthAnchor.constraint(equalToConstant: 40),
+            nextButton.heightAnchor.constraint(equalToConstant: 40),
             
             gameboardView.topAnchor.constraint(equalTo: winnerLabel.bottomAnchor, constant: 40),
             gameboardView.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),

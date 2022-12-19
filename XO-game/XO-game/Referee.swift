@@ -46,8 +46,8 @@ public final class Referee {
     
     private func generateWinsByRow( result: inout [[GameboardPosition]] ) {
         var array: [GameboardPosition] = []
-        for column in 0 ..< GameboardSize.rows {
-            for row in 0 ..< GameboardSize.columns {
+        for row in 0 ..< GameboardSize.rows {
+            for column in 0 ..< GameboardSize.columns {
                 array.append(GameboardPosition(column: column, row: row))
             }
             result.append(array)

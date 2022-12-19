@@ -38,6 +38,9 @@
 		B4E4A42C2941B707006301B4 /* MainRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4A42B2941B707006301B4 /* MainRootView.swift */; };
 		B4E4A42E2941D761006301B4 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4A42D2941D761006301B4 /* GameMode.swift */; };
 		B4E4A4362942245D006301B4 /* AIInputState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4A4352942245D006301B4 /* AIInputState.swift */; };
+		B4E4A43829437DE3006301B4 /* PalyerInputBGState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4A43729437DE3006301B4 /* PalyerInputBGState.swift */; };
+		B4E4A43A29439047006301B4 /* BlindGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4A43929439047006301B4 /* BlindGameState.swift */; };
+		B4E4A43C29444008006301B4 /* RightArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4A43B29444008006301B4 /* RightArrowButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +77,9 @@
 		B4E4A42B2941B707006301B4 /* MainRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRootView.swift; sourceTree = "<group>"; };
 		B4E4A42D2941D761006301B4 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		B4E4A4352942245D006301B4 /* AIInputState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIInputState.swift; sourceTree = "<group>"; };
+		B4E4A43729437DE3006301B4 /* PalyerInputBGState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalyerInputBGState.swift; sourceTree = "<group>"; };
+		B4E4A43929439047006301B4 /* BlindGameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlindGameState.swift; sourceTree = "<group>"; };
+		B4E4A43B29444008006301B4 /* RightArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightArrowButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +134,7 @@
 			children = (
 				B4E4A3F8293F82A8006301B4 /* RootView.swift */,
 				B4E4A3FA293F854D006301B4 /* RoundedGreenButton.swift */,
+				B4E4A43B29444008006301B4 /* RightArrowButton.swift */,
 				B4E4A3FC293F89B6006301B4 /* CustomPlayerLabel.swift */,
 				B4E4A3FE293F8A7E006301B4 /* BoldBlackLabel.swift */,
 				B4E4A413293F9351006301B4 /* GameboardView.swift */,
@@ -162,6 +169,8 @@
 			children = (
 				B4E4A41529404302006301B4 /* GameState.swift */,
 				B4E4A419294052AF006301B4 /* GameEndedState.swift */,
+				B4E4A43729437DE3006301B4 /* PalyerInputBGState.swift */,
+				B4E4A43929439047006301B4 /* BlindGameState.swift */,
 				B4E4A41729404405006301B4 /* PlayerInputState.swift */,
 				B4E4A4352942245D006301B4 /* AIInputState.swift */,
 			);
@@ -268,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4E4A43829437DE3006301B4 /* PalyerInputBGState.swift in Sources */,
 				B4E4A42E2941D761006301B4 /* GameMode.swift in Sources */,
 				B4E4A41F2940C7B2006301B4 /* LogAction.swift in Sources */,
 				B4E4A4282941B517006301B4 /* MainViewController.swift in Sources */,
@@ -276,6 +286,7 @@
 				B4E4A41A294052AF006301B4 /* GameEndedState.swift in Sources */,
 				B4E4A3EC293F8090006301B4 /* XO_game.xcdatamodeld in Sources */,
 				B4E4A4362942245D006301B4 /* AIInputState.swift in Sources */,
+				B4E4A43A29439047006301B4 /* BlindGameState.swift in Sources */,
 				B4E4A41D2940BB2B006301B4 /* Copying.swift in Sources */,
 				B4E4A3E6293F8090006301B4 /* GameViewController.swift in Sources */,
 				B4E4A4232941A028006301B4 /* Logger.swift in Sources */,
@@ -288,6 +299,7 @@
 				B4E4A405293F916D006301B4 /* GameboardPosition.swift in Sources */,
 				B4E4A412293F9330006301B4 /* XView.swift in Sources */,
 				B4E4A402293F8B74006301B4 /* Referee.swift in Sources */,
+				B4E4A43C29444008006301B4 /* RightArrowButton.swift in Sources */,
 				B4E4A414293F9351006301B4 /* GameboardView.swift in Sources */,
 				B4E4A409293F9276006301B4 /* Gameboard.swift in Sources */,
 				B4E4A3E4293F8090006301B4 /* SceneDelegate.swift in Sources */,

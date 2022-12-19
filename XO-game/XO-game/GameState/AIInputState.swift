@@ -29,7 +29,7 @@ public class AIInputState: GameState {
        self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
        self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = false
        self.gameVC?.rootView.winnerLabel.isHidden = true
-       
+
        var xIndex = Int.random(in: 0...2)
        var yIndex = Int.random(in: 0...2)
        

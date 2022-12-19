@@ -1,13 +1,13 @@
 //
-//  PlayerInputState.swift
+//  BlindGameState.swift
 //  XO-game
 //
-//  Created by Елена Русских on 07.12.2022.
+//  Created by Елена Русских on 09.12.2022.
 //
 
 import UIKit
 
-class PlayerInputState: GameState {
+class BlindGameState: GameState {
     
     public private(set) var isCompleted = false
     public let markViewPrototype: MarkView
@@ -25,21 +25,46 @@ class PlayerInputState: GameState {
     }
     
     public func begin() {
-        if gameVC?.gameMode == .withHuman{
+        
+        var position : GameboardPosition
+        var firstPlayerPositions = gameboard?.firstPlayerpositions
+        var secondPlayerPositions = gameboard?.secondPlayerpositions
             switch self.player {
             case .first:
                 self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = false
                 self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
+                guard (firstPlayerPositions?.count)! > 1  else {
+                     return
+                 }
+                position = (firstPlayerPositions?.first)!
+    
+                while !(gameboardView?.canPlaceMarkView(at: position))! && (firstPlayerPositions?.count)! > 1 {
+                    firstPlayerPositions?.removeFirst()
+                    position = (firstPlayerPositions?.first)!
+                }
             case .second:
                 self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
                 self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = false
+               guard (secondPlayerPositions?.count)! > 1  else {
+                    return
+                }
+                position = (secondPlayerPositions?.first)!
+             
+                while !(gameboardView?.canPlaceMarkView(at: position))! && (secondPlayerPositions?.count)! > 1 {
+                    
+                    secondPlayerPositions?.removeFirst()
+                    position = (secondPlayerPositions?.first)!
+                }
             }
-        } else {
-            self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = false
-            self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
-        }
         self.gameVC?.rootView.winnerLabel.isHidden = true
-
+        self.gameVC?.rootView.nextButton.isHidden = false
+        
+        addMark(at: position)
+        if self.player == .first {
+            firstPlayerPositions?.removeFirst()
+        } else {
+            secondPlayerPositions?.removeFirst()
+        }
     }
     
     public func addMark(at position: GameboardPosition) {
