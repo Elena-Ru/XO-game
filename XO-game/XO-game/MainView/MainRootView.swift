@@ -47,7 +47,6 @@ class MainRootView: UIView {
     }
     
     private func creatView() {
-        setupButtons()
         setupLayout()
     }
     
@@ -73,28 +72,35 @@ class MainRootView: UIView {
     
     private func setupLayout() {
         
-        let topImageContainerView = UIView()
-        addSubview(topImageContainerView)
-        topImageContainerView.addSubview(titleLabel)
-        topImageContainerView.addSubview(logo)
-        topImageContainerView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(titleLabel)
+        addSubview(logo)
+        let controlsStackView = UIStackView(arrangedSubviews: [gameWithPCButton, gameWithHumanButton, blindGameButton ])
+        controlsStackView.translatesAutoresizingMaskIntoConstraints = false
+        controlsStackView.distribution = .fillEqually
+        controlsStackView.setCustomSpacing(15, after: gameWithPCButton)
+        controlsStackView.setCustomSpacing(15, after: gameWithHumanButton)
+        controlsStackView.setCustomSpacing(15, after: blindGameButton)
+        controlsStackView.axis = .vertical
+        
+        addSubview(controlsStackView)
         
         NSLayoutConstraint.activate([
             
-            topImageContainerView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            topImageContainerView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            topImageContainerView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            topImageContainerView.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.6),
-            
-            titleLabel.topAnchor.constraint(equalTo: topImageContainerView.topAnchor, constant: 50),
-            titleLabel.centerXAnchor.constraint(equalTo: topImageContainerView.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 200),
+            titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             titleLabel.widthAnchor.constraint(equalToConstant: 200),
             titleLabel.heightAnchor.constraint(equalToConstant: 25),
             
-            logo.centerXAnchor.constraint(equalTo: topImageContainerView.centerXAnchor),
-            logo.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            logo.widthAnchor.constraint(equalTo: topImageContainerView.widthAnchor, multiplier: 0.5),
-            logo.heightAnchor.constraint(equalTo: topImageContainerView.heightAnchor, multiplier: 0.5),
+            logo.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            logo.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            logo.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
+            logo.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5),
+            
+            controlsStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            controlsStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -40),
+            controlsStackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6) ,
+            controlsStackView.heightAnchor.constraint(equalToConstant: 130)
+            
             ])
     }
 }

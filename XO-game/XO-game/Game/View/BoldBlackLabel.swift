@@ -15,7 +15,7 @@ class BoldBlackLabel: UILabel {
         super.init(frame: .zero)
         textColor = .black
         text = title
-        font = UIFont.boldSystemFont(ofSize: 20)
+        font = UIFont.boldSystemFont(ofSize: 35)
         textAlignment = .center
         translatesAutoresizingMaskIntoConstraints = false
     }
