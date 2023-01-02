@@ -27,6 +27,7 @@ public class GameEndedState: GameState {
             
             self.gameVC?.rootView.winnerLabel.text = "No winner"
         }
+        self.gameVC?.rootView.nextButton.isHidden = true
         self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
         self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
         log(.gameFinished(winner: self.winner))
@@ -34,7 +35,7 @@ public class GameEndedState: GameState {
     
     private func getWinnerName( from winner: Player) -> String {
         switch winner {
-        case .first: return "1sr player"
+        case .first: return "1st player"
         case .second: return "2nd player"
         }
     }

@@ -84,7 +84,7 @@ class RootView: UIView {
             winnerLabel.topAnchor.constraint(equalTo: firstPlayerTurnLabel.bottomAnchor, constant: 20),
             winnerLabel.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             winnerLabel.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.8),
-            winnerLabel.heightAnchor.constraint(equalToConstant: 20),
+            winnerLabel.heightAnchor.constraint(equalToConstant: 35),
             
             nextButton.topAnchor.constraint(equalTo: secondPlayerTurnLabel.bottomAnchor, constant: 20),
             nextButton.trailingAnchor.constraint(equalTo: secondPlayerTurnLabel.trailingAnchor, constant: -60),

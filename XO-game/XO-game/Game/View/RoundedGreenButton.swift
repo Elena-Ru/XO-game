@@ -19,8 +19,6 @@ class RoundedGreenButton: UIButton {
         setTitleColor(.white, for: .normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         layer.cornerRadius = 20
-        layer.borderColor = #colorLiteral(red: 1, green: 0.8416574597, blue: 0.0318945162, alpha: 1)
-        layer.borderWidth = 2.0
         translatesAutoresizingMaskIntoConstraints = false
     }
     
