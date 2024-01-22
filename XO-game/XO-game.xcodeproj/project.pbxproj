@@ -93,6 +93,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B4DB4F382B5E3E6700132DAC /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				B4E4A42A2941B5C9006301B4 /* Game */,
+				B4E4A4292941B52C006301B4 /* MainView */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		B4E4A3D5293F808F006301B4 = {
 			isa = PBXGroup;
 			children = (
@@ -117,8 +126,7 @@
 				B4E4A41C2940BB2B006301B4 /* Copying.swift */,
 				B4E4A401293F8B74006301B4 /* Referee.swift */,
 				B4E4A42D2941D761006301B4 /* GameMode.swift */,
-				B4E4A42A2941B5C9006301B4 /* Game */,
-				B4E4A4292941B52C006301B4 /* MainView */,
+				B4DB4F382B5E3E6700132DAC /* Scenes */,
 				B4E4A4262941A832006301B4 /* Command */,
 				B4E4A41B29407BA1006301B4 /* GameState */,
 				B4E4A3ED293F8092006301B4 /* Assets.xcassets */,

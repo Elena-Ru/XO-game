@@ -11,7 +11,7 @@ import UIKit
 final class MainViewController: UIViewController {
 
     // MARK: Properties
-    var rootView = MainRootView()
+    let rootView = MainRootView()
     
     // MARK: Lifecycle
     override func loadView() {

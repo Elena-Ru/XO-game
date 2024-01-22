@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - GameViewController
-class GameViewController: UIViewController {
+final class GameViewController: UIViewController {
 
     // MARK: Properties
     var rootView = RootView()

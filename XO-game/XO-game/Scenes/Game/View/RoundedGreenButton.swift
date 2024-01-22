@@ -22,7 +22,7 @@ final class RoundedGreenButton: UIButton {
         setTitleColor(.white, for: .normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         layer.cornerRadius = 20
-        translatesAutoresizingMaskIntoConstraints = false
+        translatesAutoresizingMaskIntoConstraints = false // remove
     }
     
     required init?(coder: NSCoder) {
