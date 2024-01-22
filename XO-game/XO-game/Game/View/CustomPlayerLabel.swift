@@ -7,7 +7,10 @@
 
 import UIKit
 
-class CustomPlayerLabel: UILabel {
+// MARK: - CustomPlayerLabel
+final class CustomPlayerLabel: UILabel {
+    
+    // MARK: Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
     }

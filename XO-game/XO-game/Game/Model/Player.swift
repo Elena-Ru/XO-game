@@ -5,9 +5,8 @@
 //  Created by Елена Русских on 06.12.2022.
 //
 
-import Foundation
-
-public enum Player: CaseIterable {
+// MARK: - Player
+enum Player: CaseIterable {
     case first
     case second
     

@@ -5,16 +5,16 @@
 //  Created by Елена Русских on 08.12.2022.
 //
 
-import Foundation
-
-internal final class LoggerInvoker {
-    internal static let shared = LoggerInvoker()
-    
+// MARK: - Logger
+final class LoggerInvoker {
+    // MARK: Properties
+    static let shared = LoggerInvoker()
     private let logger = Logger()
     private let batchSize = 3
     private var commands: [LogCommand] = []
     
-    internal func addLogCommand(_ command: LogCommand) {
+    // MARK: Methods
+    func addLogCommand(_ command: LogCommand) {
         self.commands.append(command)
         self.executeCommandsIfNeeded()
     }

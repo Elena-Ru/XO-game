@@ -7,16 +7,25 @@
 
 import UIKit
 
-class BlindGameState: GameState {
+// MARK: - GameEndedState
+final class BlindGameState: GameState {
     
-    public private(set) var isCompleted = false
-    public let markViewPrototype: MarkView
-    public let player: Player
+    // MARK: Properties
+    private(set) var isCompleted = false
+    let markViewPrototype: MarkView
+    let player: Player
     private(set) weak var gameVC: GameViewController?
     private(set) weak var gameboard: Gameboard?
     private(set) weak var gameboardView: GameboardView?
     
-    init(player: Player, markViewPrototype: MarkView, gameVC: GameViewController, gameboard: Gameboard, gameboardView: GameboardView) {
+    // MARK: Initializer
+    init(
+        player: Player,
+        markViewPrototype: MarkView,
+        gameVC: GameViewController,
+        gameboard: Gameboard,
+        gameboardView: GameboardView
+    ) {
         self.player = player
         self.markViewPrototype = markViewPrototype
         self.gameVC = gameVC
@@ -24,16 +33,17 @@ class BlindGameState: GameState {
         self.gameboardView = gameboardView
     }
     
-    public func begin() {
-        
-        var position : GameboardPosition
+    // MARK: Methods
+    func begin() {
+        var position: GameboardPosition
         var firstPlayerPositions = gameboard?.firstPlayerpositions
         var secondPlayerPositions = gameboard?.secondPlayerpositions
             switch self.player {
             case .first:
                 self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = false
                 self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
-                guard (firstPlayerPositions?.count)! > 1  else {
+                guard (firstPlayerPositions?.count)! > 1  
+                else {
                      return
                  }
                 position = (firstPlayerPositions?.first)!
@@ -45,7 +55,8 @@ class BlindGameState: GameState {
             case .second:
                 self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
                 self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = false
-               guard (secondPlayerPositions?.count)! > 1  else {
+                guard (secondPlayerPositions?.count)! > 1  
+                else {
                     return
                 }
                 position = (secondPlayerPositions?.first)!
@@ -67,9 +78,11 @@ class BlindGameState: GameState {
         }
     }
     
-    public func addMark(at position: GameboardPosition) {
-        guard let gameboardView = self.gameboardView,
-              gameboardView.canPlaceMarkView(at: position) else {
+    func addMark(at position: GameboardPosition) {
+        guard 
+            let gameboardView = self.gameboardView,
+            gameboardView.canPlaceMarkView(at: position)
+        else {
             return
         }
         log(.playerInput(player: self.player, position: position))
@@ -77,5 +90,4 @@ class BlindGameState: GameState {
         self.gameboardView?.placeMarkView(self.markViewPrototype.copy(), at: position)
         self.isCompleted = true
     }
-    
 }

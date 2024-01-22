@@ -7,8 +7,10 @@
 
 import UIKit
 
-class RootView: UIView {
+// MARK: - RootView
+final class RootView: UIView {
     
+    // MARK: Properties
     var scroll: UIScrollView = {
         let sv = UIScrollView()
         sv.translatesAutoresizingMaskIntoConstraints = false
@@ -46,6 +48,7 @@ class RootView: UIView {
         return btn
     }()
     
+    // MARK: Initializer
     init() {
         super.init(frame: CGRect())
         setupLayout()
@@ -55,6 +58,7 @@ class RootView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Methods
     private func setupLayout() {
         self.addSubview(scroll)
         scroll.addSubview(firstPlayerTurnLabel)

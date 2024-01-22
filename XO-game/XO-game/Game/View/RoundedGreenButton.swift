@@ -7,12 +7,15 @@
 
 import UIKit
 
-class RoundedGreenButton: UIButton {
+// MARK: - RoundedGreenButton
+final class RoundedGreenButton: UIButton {
+    
+    // MARK: Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-     init(title: String) {
+    init(title: String) {
         super.init(frame: .zero)
         layer.backgroundColor = #colorLiteral(red: 0.1957847476, green: 0.8436268568, blue: 0.2952730954, alpha: 1)
         setTitle(title, for: .normal)

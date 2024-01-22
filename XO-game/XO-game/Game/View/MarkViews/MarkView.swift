@@ -7,24 +7,23 @@
 
 import UIKit
 
-public class MarkView: UIView, Copying {
+// MARK: - MarkView
+class MarkView: UIView, Copying {
         
-    
     // MARK: - Properties
-    
-    public var lineColor: UIColor = .black
-    public var lineWidth: CGFloat = 7
-    public var textColor: UIColor = .red {
+    var lineColor: UIColor = .black
+    var lineWidth: CGFloat = 7
+    var textColor: UIColor = .red {
         didSet { label.textColor = textColor }
     }
     
-    public var turnNumbers: [Int] = [] {
+    var turnNumbers: [Int] = [] {
         didSet {
             label.text = turnNumbers.map { String($0) }.joined(separator: ",")
         }
     }
     
-    internal private(set) lazy var shapeLayer: CAShapeLayer = {
+    private(set) lazy var shapeLayer: CAShapeLayer = {
         let shapeLayer = CAShapeLayer()
         shapeLayer.fillColor = nil
         shapeLayer.lineWidth = lineWidth
@@ -33,7 +32,7 @@ public class MarkView: UIView, Copying {
         return shapeLayer
     }()
     
-    internal private(set) lazy var label: UILabel = {
+    private(set) lazy var label: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: bounds.width, height: 0.1 * bounds.height))
         label.textColor = textColor
         label.textAlignment = .right
@@ -52,14 +51,13 @@ public class MarkView: UIView, Copying {
         return label
     }()
     
-    // MARK: - Init
-    
-    public init() {
+    // MARK: - Initiaizer
+    init() {
         super.init(frame: CGRect(origin: .zero,
                                  size: CGSize(width: 90, height: 90)))
     }
     
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -69,21 +67,23 @@ public class MarkView: UIView, Copying {
         self.lineWidth = prototype.lineWidth
         self.textColor = prototype.textColor
     }
-    // MARK: - UIView
     
+    // MARK: - UIView
     public final override func layoutSubviews() {
         super.layoutSubviews()
+        
         updateLabel()
         updateShapeLayer()
     }
     
-    public override var frame: CGRect {
+    override var frame: CGRect {
         didSet {
             setNeedsLayout()
             layoutIfNeeded()
         }
     }
-    public override var bounds: CGRect {
+    
+    override var bounds: CGRect {
         didSet {
             setNeedsLayout()
             layoutIfNeeded()
@@ -91,9 +91,10 @@ public class MarkView: UIView, Copying {
     }
     
     // MARK: - Methods
-    
-    public func animateIn(duration: TimeInterval = 0.5,
-                          completion: @escaping () -> Void) {
+    func animateIn(
+        duration: TimeInterval = 0.5,
+        completion: @escaping () -> Void
+    ) {
         CATransaction.begin()
         CATransaction.setCompletionBlock(completion)
         let animation = CABasicAnimation(keyPath: "strokeEnd")
@@ -104,9 +105,10 @@ public class MarkView: UIView, Copying {
         CATransaction.commit()
     }
     
-    public func animateOut(duration: TimeInterval = 0.5,
-                           completion: @escaping () -> Void) {
-        
+    func animateOut(
+        duration: TimeInterval = 0.5,
+        completion: @escaping () -> Void
+    ) {
         CATransaction.begin()
         CATransaction.setCompletionBlock(completion)
         let animation = CABasicAnimation(keyPath: "opacity")
@@ -118,15 +120,13 @@ public class MarkView: UIView, Copying {
     }
     
     // MARK: - UI
-    
     private final func updateLabel() {
         let size = 0.1 * bounds.height
         label.font = UIFont.systemFont(ofSize: size, weight: .thin)
     }
     
     // MARK: - Template methods
-    
-    internal func updateShapeLayer() {
+    func updateShapeLayer() {
         // meant for subclasses to override
     }
 }

@@ -5,13 +5,13 @@
 //  Created by Елена Русских on 06.12.2022.
 //
 
-import Foundation
-
-public final class Referee {
+// MARK: - Referee
+final class Referee {
     
-    public let gameboard: Gameboard
+    // MARK: Properties
+    let gameboard: Gameboard
     
-    public private(set) lazy var winningCombinations: [[GameboardPosition]] = {
+    private(set) lazy var winningCombinations: [[GameboardPosition]] = {
         var winningCombinations: [[GameboardPosition]] = []
         generateWinsByColumn(result: &winningCombinations)
         generateWinsByRow(result: &winningCombinations)
@@ -20,11 +20,13 @@ public final class Referee {
         return winningCombinations
     }()
     
-    public init(gameboard: Gameboard) {
+    // MARK: Initializer
+    init(gameboard: Gameboard) {
         self.gameboard = gameboard
     }
     
-    public func determineWinner() ->Player? {
+    // MARK: Methods
+    func determineWinner() -> Player? {
         for player in Player.allCases {
             if doesPlayerWinningCombination(player) {
                 return player
@@ -33,7 +35,7 @@ public final class Referee {
         return nil
     }
     
-    private func generateWinsByColumn( result: inout [[GameboardPosition]] ) {
+    private func generateWinsByColumn(result: inout [[GameboardPosition]]) {
         var array: [GameboardPosition] = []
         for column in 0 ..< GameboardSize.columns {
             for row in 0 ..< GameboardSize.rows {
@@ -44,7 +46,7 @@ public final class Referee {
         }
     }
     
-    private func generateWinsByRow( result: inout [[GameboardPosition]] ) {
+    private func generateWinsByRow(result: inout [[GameboardPosition]]) {
         var array: [GameboardPosition] = []
         for row in 0 ..< GameboardSize.rows {
             for column in 0 ..< GameboardSize.columns {
@@ -55,7 +57,7 @@ public final class Referee {
         }
     }
     
-    private func generateWinLeftDiagonal( result: inout [[GameboardPosition]] ) {
+    private func generateWinLeftDiagonal(result: inout [[GameboardPosition]]) {
         guard GameboardSize.columns == GameboardSize.rows else { return }
         var array: [GameboardPosition] = []
         for i in 0 ..< GameboardSize.columns {
@@ -64,7 +66,7 @@ public final class Referee {
         result.append(array)
     }
                          
-    private func generateWinRightDiagonal( result: inout [[GameboardPosition]] ) {
+    private func generateWinRightDiagonal(result: inout [[GameboardPosition]]) {
         guard GameboardSize.columns == GameboardSize.rows else { return }
         var array: [GameboardPosition] = []
         for i in 0 ..< GameboardSize.rows {
@@ -73,12 +75,12 @@ public final class Referee {
         result.append(array)
     }
                          
-     private func doesPlayerWinningCombination(_ player: Player) -> Bool {
-                for winningPosition in winningCombinations {
-                    if gameboard.contains(player: player, at: winningPosition){
-                        return true
-                    }
-                }
-                return false
+    private func doesPlayerWinningCombination(_ player: Player) -> Bool {
+        for winningPosition in winningCombinations {
+            if gameboard.contains(player: player, at: winningPosition){
+                return true
+            }
+        }
+        return false
     }
 }

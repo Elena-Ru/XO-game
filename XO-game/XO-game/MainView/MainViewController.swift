@@ -7,10 +7,13 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+// MARK: - MainViewController
+final class MainViewController: UIViewController {
 
+    // MARK: Properties
     var rootView = MainRootView()
     
+    // MARK: Lifecycle
     override func loadView() {
         super.loadView()
         view = rootView
@@ -24,7 +27,9 @@ class MainViewController: UIViewController {
         rootView.blindGameButton.addTarget(self, action: #selector(blindGame), for: .touchUpInside)
     }
 
-    @objc func gameWithPC () {
+    // MARK: Objc Methods
+    @objc
+    func gameWithPC() {
         print("Game with AI")
         let vc = GameViewController()
         vc.gameMode = .withAI
@@ -33,7 +38,8 @@ class MainViewController: UIViewController {
         present(navigationController, animated: true)
     }
     
-    @objc func gameWithHuman () {
+    @objc
+    func gameWithHuman() {
         print("Game with human")
         let vc = GameViewController()
         vc.gameMode = .withHuman
@@ -42,7 +48,8 @@ class MainViewController: UIViewController {
         present(navigationController, animated: true)
     }
     
-    @objc func blindGame () {
+    @objc
+    func blindGame() {
         print("Blind game")
         let vc = GameViewController()
         vc.gameMode = .blindGame

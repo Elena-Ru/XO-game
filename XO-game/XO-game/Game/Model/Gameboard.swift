@@ -5,28 +5,24 @@
 //  Created by Елена Русских on 06.12.2022.
 //
 
-import Foundation
-
-public final class Gameboard {
+// MARK: - Gameboard
+final class Gameboard {
     
-    // MARK: - Properties
-    
+    // MARK: Properties
     public lazy var positions: [[Player?]] = initialPositions()
-    
     public lazy var firstPlayerpositions: [GameboardPosition] = []
     public lazy var secondPlayerpositions: [GameboardPosition] = []
 
-    // MARK: - public
-    
-    public func setPlayer(_ player: Player, at position: GameboardPosition) {
+    // MARK: Methods
+    func setPlayer(_ player: Player, at position: GameboardPosition) {
         positions[position.column][position.row] = player
     }
     
-    public func clear() {
+    func clear() {
         self.positions = initialPositions()
     }
     
-    public func contains(player: Player, at positions: [GameboardPosition]) -> Bool {
+    func contains(player: Player, at positions: [GameboardPosition]) -> Bool {
         for position in positions {
             guard contains(player: player, at: position) else {
                 return false
@@ -35,12 +31,12 @@ public final class Gameboard {
         return true
     }
     
-    public func contains(player: Player, at position: GameboardPosition) -> Bool {
+    func contains(player: Player, at position: GameboardPosition) -> Bool {
         let (column, row) = (position.column, position.row)
         return positions[column][row] == player
     }
     
-    public func friendshipCase() -> Bool {
+    func friendshipCase() -> Bool {
         for i in 0 ..< GameboardSize.columns {
             for j in 0 ..< GameboardSize.rows {
                 if positions[i][j] == nil {
@@ -51,8 +47,7 @@ public final class Gameboard {
         return true
     }
     
-    // MARK: - Private
-    
+    // MARK: Private methods
     private func initialPositions() -> [[Player?]] {
         var positions: [[Player?]] = []
         for _ in 0 ..< GameboardSize.columns {

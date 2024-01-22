@@ -6,12 +6,15 @@
 //
 import UIKit
 
-class BoldBlackLabel: UILabel {
+// MARK: - BoldBlackLabel
+final class BoldBlackLabel: UILabel {
+    
+    // MARK: Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-     init(title: String) {
+    init(title: String) {
         super.init(frame: .zero)
         textColor = .black
         text = title

@@ -7,8 +7,10 @@
 
 import UIKit
 
-class RightArrowButton: UIButton {
+// MARK: - RightArrowButton
+final class RightArrowButton: UIButton {
     
+    // MARK: Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
         setImage(UIImage(systemName: "arrowshape.right.fill"), for: .normal)

@@ -7,8 +7,10 @@
 
 import UIKit
 
-class MainRootView: UIView {
+// MARK: - MainRootView
+final class MainRootView: UIView {
     
+    // MARK: Properties
     let titleLabel: BoldBlackLabel = {
         let label = BoldBlackLabel(title: "Tic-Tac-Toe")
         return label
@@ -36,6 +38,7 @@ class MainRootView: UIView {
         return btn
     }()
     
+    // MARK: Initializer
     init() {
         super.init(frame: CGRect())
         backgroundColor = .white
@@ -46,12 +49,12 @@ class MainRootView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Methods
     private func creatView() {
         setupLayout()
     }
     
     private func setupButtons() {
-        
         let controlsStackView = UIStackView(arrangedSubviews: [gameWithPCButton, gameWithHumanButton, blindGameButton ])
         controlsStackView.translatesAutoresizingMaskIntoConstraints = false
         controlsStackView.distribution = .fillEqually
@@ -71,7 +74,6 @@ class MainRootView: UIView {
     }
     
     private func setupLayout() {
-        
         addSubview(titleLabel)
         addSubview(logo)
         let controlsStackView = UIStackView(arrangedSubviews: [gameWithPCButton, gameWithHumanButton, blindGameButton ])
@@ -100,7 +102,6 @@ class MainRootView: UIView {
             controlsStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -40),
             controlsStackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6) ,
             controlsStackView.heightAnchor.constraint(equalToConstant: 130)
-            
             ])
     }
 }
