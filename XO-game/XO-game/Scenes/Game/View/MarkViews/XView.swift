@@ -8,8 +8,7 @@
 import UIKit
 
 // MARK: - XView
-class XView: MarkView {
-    
+final class XView: MarkView {
     override func updateShapeLayer() {
         super.updateShapeLayer()
         let path = UIBezierPath()

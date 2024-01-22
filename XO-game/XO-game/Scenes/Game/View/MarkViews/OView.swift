@@ -9,17 +9,27 @@ import UIKit
 
 // MARK: - OView
 final class OView: MarkView {
-    
     override func updateShapeLayer() {
         super.updateShapeLayer()
-        let center = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
-        let radius = 0.3 * min(bounds.width, bounds.height)
+        let center = CGPoint(x: bounds.width / Constants.half, y: bounds.height / Constants.half)
+        let radius = Constants.radiusMultiplier * min(bounds.width, bounds.height)
         shapeLayer.path = UIBezierPath(
             arcCenter: center,
             radius: radius,
-            startAngle: 330 * CGFloat.pi / 180,
-            endAngle: -30 * CGFloat.pi / 180,
+            startAngle: Constants.startAngle * CGFloat.pi / Constants.halfPi,
+            endAngle: Constants.endAngle * CGFloat.pi / Constants.halfPi,
             clockwise: false
         ).cgPath
+    }
+}
+
+// MARK: - Constants
+private extension OView {
+    enum Constants {
+        static let radiusMultiplier: Double = 0.3
+        static let startAngle: CGFloat = 330
+        static let endAngle: CGFloat = -30
+        static let halfPi: CGFloat = 180
+        static let half: CGFloat = 2
     }
 }
