@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4DB4F3B2B5E46CC00132DAC /* MainViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB4F3A2B5E46CC00132DAC /* MainViewPresenter.swift */; };
+		B4DB4F3D2B5E470900132DAC /* MainViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB4F3C2B5E470900132DAC /* MainViewOutput.swift */; };
+		B4DB4F3F2B5E472800132DAC /* MainViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB4F3E2B5E472800132DAC /* MainViewInput.swift */; };
+		B4DB4F482B5E4DE300132DAC /* MainViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB4F472B5E4DE300132DAC /* MainViewBuilder.swift */; };
 		B4E4A3E2293F8090006301B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4A3E1293F8090006301B4 /* AppDelegate.swift */; };
 		B4E4A3E4293F8090006301B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4A3E3293F8090006301B4 /* SceneDelegate.swift */; };
 		B4E4A3E6293F8090006301B4 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4A3E5293F8090006301B4 /* GameViewController.swift */; };
@@ -44,6 +48,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B4DB4F3A2B5E46CC00132DAC /* MainViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewPresenter.swift; sourceTree = "<group>"; };
+		B4DB4F3C2B5E470900132DAC /* MainViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewOutput.swift; sourceTree = "<group>"; };
+		B4DB4F3E2B5E472800132DAC /* MainViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewInput.swift; sourceTree = "<group>"; };
+		B4DB4F472B5E4DE300132DAC /* MainViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewBuilder.swift; sourceTree = "<group>"; };
 		B4E4A3DE293F8090006301B4 /* XO-game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XO-game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E4A3E1293F8090006301B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4E4A3E3293F8090006301B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +108,65 @@
 				B4E4A4292941B52C006301B4 /* MainView */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		B4DB4F402B5E4C4E00132DAC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B4DB4F442B5E4C7900132DAC /* API */,
+				B4DB4F452B5E4C8B00132DAC /* Impl */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B4DB4F412B5E4C5500132DAC /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				B4DB4F432B5E4C6700132DAC /* Impl */,
+				B4DB4F422B5E4C6000132DAC /* API */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		B4DB4F422B5E4C6000132DAC /* API */ = {
+			isa = PBXGroup;
+			children = (
+				B4DB4F3C2B5E470900132DAC /* MainViewOutput.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		B4DB4F432B5E4C6700132DAC /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				B4DB4F3A2B5E46CC00132DAC /* MainViewPresenter.swift */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
+		B4DB4F442B5E4C7900132DAC /* API */ = {
+			isa = PBXGroup;
+			children = (
+				B4DB4F3E2B5E472800132DAC /* MainViewInput.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		B4DB4F452B5E4C8B00132DAC /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				B4E4A4272941B517006301B4 /* MainViewController.swift */,
+				B4E4A42B2941B707006301B4 /* MainRootView.swift */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
+		B4DB4F462B5E4DD300132DAC /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				B4DB4F472B5E4DE300132DAC /* MainViewBuilder.swift */,
+			);
+			path = Builder;
 			sourceTree = "<group>";
 		};
 		B4E4A3D5293F808F006301B4 = {
@@ -199,8 +266,9 @@
 		B4E4A4292941B52C006301B4 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				B4E4A4272941B517006301B4 /* MainViewController.swift */,
-				B4E4A42B2941B707006301B4 /* MainRootView.swift */,
+				B4DB4F462B5E4DD300132DAC /* Builder */,
+				B4DB4F412B5E4C5500132DAC /* Presenter */,
+				B4DB4F402B5E4C4E00132DAC /* View */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -286,14 +354,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4E4A43829437DE3006301B4 /* PalyerInputBGState.swift in Sources */,
+				B4DB4F3F2B5E472800132DAC /* MainViewInput.swift in Sources */,
 				B4E4A42E2941D761006301B4 /* GameMode.swift in Sources */,
 				B4E4A41F2940C7B2006301B4 /* LogAction.swift in Sources */,
 				B4E4A4282941B517006301B4 /* MainViewController.swift in Sources */,
+				B4DB4F3D2B5E470900132DAC /* MainViewOutput.swift in Sources */,
 				B4E4A3FF293F8A7E006301B4 /* BoldBlackLabel.swift in Sources */,
 				B4E4A41829404405006301B4 /* PlayerInputState.swift in Sources */,
 				B4E4A41A294052AF006301B4 /* GameEndedState.swift in Sources */,
 				B4E4A3EC293F8090006301B4 /* XO_game.xcdatamodeld in Sources */,
 				B4E4A4362942245D006301B4 /* AIInputState.swift in Sources */,
+				B4DB4F482B5E4DE300132DAC /* MainViewBuilder.swift in Sources */,
 				B4E4A43A29439047006301B4 /* BlindGameState.swift in Sources */,
 				B4E4A41D2940BB2B006301B4 /* Copying.swift in Sources */,
 				B4E4A3E6293F8090006301B4 /* GameViewController.swift in Sources */,
@@ -308,6 +379,7 @@
 				B4E4A412293F9330006301B4 /* XView.swift in Sources */,
 				B4E4A402293F8B74006301B4 /* Referee.swift in Sources */,
 				B4E4A43C29444008006301B4 /* RightArrowButton.swift in Sources */,
+				B4DB4F3B2B5E46CC00132DAC /* MainViewPresenter.swift in Sources */,
 				B4E4A414293F9351006301B4 /* GameboardView.swift in Sources */,
 				B4E4A409293F9276006301B4 /* Gameboard.swift in Sources */,
 				B4E4A3E4293F8090006301B4 /* SceneDelegate.swift in Sources */,
