@@ -17,7 +17,7 @@
 		B4E4A3EC293F8090006301B4 /* XO_game.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4E4A3EA293F8090006301B4 /* XO_game.xcdatamodeld */; };
 		B4E4A3EE293F8092006301B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E4A3ED293F8092006301B4 /* Assets.xcassets */; };
 		B4E4A3F1293F8092006301B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4E4A3EF293F8092006301B4 /* LaunchScreen.storyboard */; };
-		B4E4A3F9293F82A8006301B4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4A3F8293F82A8006301B4 /* RootView.swift */; };
+		B4E4A3F9293F82A8006301B4 /* GameRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4A3F8293F82A8006301B4 /* GameRootView.swift */; };
 		B4E4A3FB293F854D006301B4 /* RoundedGreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4A3FA293F854D006301B4 /* RoundedGreenButton.swift */; };
 		B4E4A3FD293F89B6006301B4 /* CustomPlayerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4A3FC293F89B6006301B4 /* CustomPlayerLabel.swift */; };
 		B4E4A3FF293F8A7E006301B4 /* BoldBlackLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E4A3FE293F8A7E006301B4 /* BoldBlackLabel.swift */; };
@@ -60,7 +60,7 @@
 		B4E4A3ED293F8092006301B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4E4A3F0293F8092006301B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4E4A3F2293F8092006301B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B4E4A3F8293F82A8006301B4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		B4E4A3F8293F82A8006301B4 /* GameRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRootView.swift; sourceTree = "<group>"; };
 		B4E4A3FA293F854D006301B4 /* RoundedGreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGreenButton.swift; sourceTree = "<group>"; };
 		B4E4A3FC293F89B6006301B4 /* CustomPlayerLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerLabel.swift; sourceTree = "<group>"; };
 		B4E4A3FE293F8A7E006301B4 /* BoldBlackLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoldBlackLabel.swift; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 		B4E4A400293F8AE4006301B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B4E4A3F8293F82A8006301B4 /* RootView.swift */,
+				B4E4A3F8293F82A8006301B4 /* GameRootView.swift */,
 				B4E4A3FA293F854D006301B4 /* RoundedGreenButton.swift */,
 				B4E4A43B29444008006301B4 /* RightArrowButton.swift */,
 				B4E4A3FC293F89B6006301B4 /* CustomPlayerLabel.swift */,
@@ -384,7 +384,7 @@
 				B4E4A409293F9276006301B4 /* Gameboard.swift in Sources */,
 				B4E4A3E4293F8090006301B4 /* SceneDelegate.swift in Sources */,
 				B4E4A42C2941B707006301B4 /* MainRootView.swift in Sources */,
-				B4E4A3F9293F82A8006301B4 /* RootView.swift in Sources */,
+				B4E4A3F9293F82A8006301B4 /* GameRootView.swift in Sources */,
 				B4E4A41629404302006301B4 /* GameState.swift in Sources */,
 				B4E4A410293F9312006301B4 /* OView.swift in Sources */,
 				B4E4A42129419C58006301B4 /* LogCommand.swift in Sources */,

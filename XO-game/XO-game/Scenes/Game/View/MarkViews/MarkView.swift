@@ -10,9 +10,9 @@ import UIKit
 // MARK: - MarkView
 class MarkView: UIView, Copying {
         
-    // MARK: - Properties
+    // MARK: Properties
     var lineColor: UIColor = .black
-    var lineWidth: CGFloat = 7
+    var lineWidth: CGFloat = Constants.lineWidth
     var textColor: UIColor = .red {
         didSet { label.textColor = textColor }
     }
@@ -33,28 +33,22 @@ class MarkView: UIView, Copying {
     }()
     
     private(set) lazy var label: UILabel = {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: bounds.width, height: 0.1 * bounds.height))
+        let label = UILabel(frame: CGRect(x: .zero, y: .zero, width: bounds.width, height: Constants.labeleHeightMultiplier * bounds.height))
         label.textColor = textColor
         label.textAlignment = .right
         addSubview(label)
-        
         label.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint(item: label, attribute: .top, relatedBy: .equal,
-                           toItem: self, attribute: .top, multiplier: 1, constant: 4).isActive = true
-        NSLayoutConstraint(item: label, attribute: .height, relatedBy: .equal,
-                           toItem: self, attribute: .height, multiplier: 0.1, constant: 0).isActive = true
-        NSLayoutConstraint(item: label, attribute: .leading, relatedBy: .equal,
-                           toItem: self, attribute: .leading, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal,
-                           toItem: label, attribute: .trailing, multiplier: 1, constant: 4).isActive = true
         
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.labelTopAnchor),
+            label.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+            ])
         return label
     }()
     
-    // MARK: - Initiaizer
+    // MARK: Initiaizer
     init() {
-        super.init(frame: CGRect(origin: .zero,
-                                 size: CGSize(width: 90, height: 90)))
+        super.init(frame: CGRect(x: .zero, y: .zero, width: Constants.width, height: Constants.width))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -68,7 +62,7 @@ class MarkView: UIView, Copying {
         self.textColor = prototype.textColor
     }
     
-    // MARK: - UIView
+    // MARK: UIView
     public final override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -90,44 +84,25 @@ class MarkView: UIView, Copying {
         }
     }
     
-    // MARK: - Methods
-    func animateIn(
-        duration: TimeInterval = 0.5,
-        completion: @escaping () -> Void
-    ) {
-        CATransaction.begin()
-        CATransaction.setCompletionBlock(completion)
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.duration = duration
-        animation.fromValue = 0.0
-        animation.toValue = 1.0
-        shapeLayer.add(animation, forKey: nil)
-        CATransaction.commit()
-    }
-    
-    func animateOut(
-        duration: TimeInterval = 0.5,
-        completion: @escaping () -> Void
-    ) {
-        CATransaction.begin()
-        CATransaction.setCompletionBlock(completion)
-        let animation = CABasicAnimation(keyPath: "opacity")
-        animation.duration = duration
-        animation.fromValue = 1.0
-        animation.toValue = 0.0
-        shapeLayer.add(animation, forKey: nil)
-        CATransaction.commit()
-    }
-    
-    // MARK: - UI
+    // MARK: UI
     private final func updateLabel() {
-        let size = 0.1 * bounds.height
+        let size = Constants.sizeMultiplier * bounds.height
         label.font = UIFont.systemFont(ofSize: size, weight: .thin)
     }
     
-    // MARK: - Template methods
+    // MARK: Template methods
     func updateShapeLayer() {
-        // meant for subclasses to override
     }
 }
 
+private extension MarkView {
+    enum Constants {
+        static let lineWidth: CGFloat = 7
+        static let labeleHeightMultiplier: Double = 0.1
+        static let animationTimeInterval: TimeInterval = 0.5
+        static let labelTopAnchor: CGFloat = 4
+        static let width: CGFloat = 90
+        static let height: CGFloat = 90
+        static let sizeMultiplier: Double = 0.1
+    }
+}

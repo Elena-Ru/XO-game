@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - RootView
-final class RootView: UIView {
+final class GameRootView: UIView {
     
     // MARK: Properties
     var scroll: UIScrollView = {

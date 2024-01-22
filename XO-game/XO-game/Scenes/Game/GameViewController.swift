@@ -11,7 +11,7 @@ import UIKit
 final class GameViewController: UIViewController {
 
     // MARK: Properties
-    var rootView = RootView()
+    let rootView = GameRootView()
     var gameMode: GameMode = .withHuman
     private lazy var gameboard = Gameboard()
     private var currentState: GameState! {
