@@ -5,15 +5,11 @@
 //  Created by Елена Русских on 08.12.2022.
 //
 
-import Foundation
-
+// MARK: - LogCommand
 final class LogCommand {
     
+    // MARK: Properties
     let action: LogAction
-    
-    init(action: LogAction) {
-        self.action = action
-    }
     
     var logMessage: String {
         switch self.action {
@@ -28,5 +24,10 @@ final class LogCommand {
         case .restartGame:
             return "game restarted"
         }
+    }
+    
+    // MARK: Iniktializer
+    init(action: LogAction) {
+        self.action = action
     }
 }

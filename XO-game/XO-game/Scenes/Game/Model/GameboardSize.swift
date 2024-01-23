@@ -5,12 +5,10 @@
 //  Created by Елена Русских on 06.12.2022.
 //
 
-import Foundation
-
-public struct GameboardSize {
-    
-    public static let columns = 3
-    public static let rows = 3
+// MARK: - GameboardSize
+struct GameboardSize {
+    static let columns = 3
+    static let rows = 3
     
     private init(){}
 }

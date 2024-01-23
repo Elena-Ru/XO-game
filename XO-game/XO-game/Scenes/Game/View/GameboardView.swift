@@ -8,67 +8,59 @@
 import UIKit
 
 // MARK: - GameboardView
-public class GameboardView: UIView {
+final class GameboardView: UIView {
+
+    // MARK: Properties
+    var onSelectPosition: ((GameboardPosition) -> Void)?
+    private(set) var markViewForPosition: [GameboardPosition: MarkView] = [:]
     
-    
-    // MARK: - Public Properties
-    public var onSelectPosition: ((GameboardPosition) -> Void)?
-    
-    public private(set) var markViewForPosition: [GameboardPosition: MarkView] = [:]
-    
-    // MARK: - Constants
-    
-    internal struct Constants {
-        static let lineColor: UIColor = .gray
-        static let lineWidth: CGFloat = 7
-    }
-    
-    // MARK: - Inits
-    
+    // MARK: Initializer
     public override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    init(){
+    init() {
         super.init(frame: .zero)
-        translatesAutoresizingMaskIntoConstraints = false
         draw(frame)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // MARK: - Private Properties
     
+    // MARK: Private Properties
     private var calculatedColumnWidth: CGFloat {
-        return bounds.width / CGFloat(GameboardSize.columns)
+        bounds.width / CGFloat(GameboardSize.columns)
     }
     private var calculatedRowHeight: CGFloat {
-        return bounds.height / CGFloat(GameboardSize.rows)
+        bounds.height / CGFloat(GameboardSize.rows)
     }
     
-    // MARK: - Public
-    
-    public func clear() {
-        for (_, markView) in markViewForPosition {
+    // MARK: - Methods
+    func clear() {
+        markViewForPosition.forEach { (key, markView) in
             markView.removeFromSuperview()
         }
         markViewForPosition = [:]
     }
     
-    public func canPlaceMarkView(at position: GameboardPosition) -> Bool {
-        return markViewForPosition[position] == nil
+    func canPlaceMarkView(at position: GameboardPosition) -> Bool {
+        markViewForPosition[position] == nil
     }
     
-    public func placeMarkView(_ markView: MarkView, at position: GameboardPosition) {
-        guard self.canPlaceMarkView(at: position) else { return }
+    func placeMarkView(_ markView: MarkView, at position: GameboardPosition) {
+        guard self.canPlaceMarkView(at: position) 
+        else {
+            return
+        }
         updateFrame(for: markView, at: position)
         markViewForPosition[position] = markView
         addSubview(markView)
     }
     
-    public func removeMarkView(at position: GameboardPosition) {
-        guard let markView = markViewForPosition[position] else {
+    func removeMarkView(at position: GameboardPosition) {
+        guard let markView = markViewForPosition[position] 
+        else {
             return
         }
         markViewForPosition[position] = nil
@@ -76,8 +68,7 @@ public class GameboardView: UIView {
     }
     
     // MARK: - UIView
-    
-    public override func draw(_ rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         super.draw(rect)
         Constants.lineColor.setStroke()
         drawColumnLines(for: rect)
@@ -85,19 +76,21 @@ public class GameboardView: UIView {
     }
     
     // MARK: - Touch Handling
-    
-    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touchLocation = touches.first?.location(in: self) else { return }
-        let position = GameboardPosition(column: determineColumn(for: touchLocation),
-                                         row: determineRow(for: touchLocation))
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touchLocation = touches.first?.location(in: self)
+        else {
+            return
+        }
+        let position = GameboardPosition(
+            column: determineColumn(for: touchLocation),
+            row: determineRow(for: touchLocation))
         onSelectPosition?(position)
     }
     
     // MARK: - UI
-    
     private func drawColumnLines(for rect: CGRect) {
         let columnWidth = self.calculatedColumnWidth
-        for i in 1 ..< GameboardSize.columns {
+        for i in Constants.next ..< GameboardSize.columns {
             let linePath = UIBezierPath()
             linePath.move(to: CGPoint(x: rect.minX + CGFloat(i) * columnWidth,
                                       y: rect.minY))
@@ -110,7 +103,7 @@ public class GameboardView: UIView {
     
     private func drawRowLines(for rect: CGRect) {
         let rowHeight = self.calculatedRowHeight
-        for i in 1 ..< GameboardSize.rows {
+        for i in Constants.next ..< GameboardSize.rows {
             let linePath = UIBezierPath()
             linePath.move(to: CGPoint(x: rect.minX, y: rect.minY + CGFloat(i) * rowHeight))
             linePath.addLine(to: CGPoint(x: rect.minX + rect.width, y: rect.minY + CGFloat(i) * rowHeight))
@@ -119,14 +112,13 @@ public class GameboardView: UIView {
         }
     }
     
-    // MARK: - Private
-    
+    // MARK: - Private Methods
     private func determineColumn(for touchLocation: CGPoint) -> Int {
         let columnWidth = self.calculatedColumnWidth
-        let lastColumn = GameboardSize.columns - 1
-        for i in (0 ..< lastColumn) {
+        let lastColumn = GameboardSize.columns - Constants.next
+        for i in .zero ..< lastColumn {
             let xMin = CGFloat(i) * columnWidth
-            let xMax = CGFloat(i + 1) * columnWidth
+            let xMax = CGFloat(i + Constants.next) * columnWidth
             if (xMin ..< xMax).contains(touchLocation.x) {
                 return i
             }
@@ -136,10 +128,10 @@ public class GameboardView: UIView {
     
     private func determineRow(for touchLocation: CGPoint) -> Int {
         let rowHeight = self.calculatedRowHeight
-        let lastRow = GameboardSize.rows - 1
-        for i in (0 ..< lastRow) {
+        let lastRow = GameboardSize.rows - Constants.next
+        for i in .zero ..< lastRow {
             let yMin = CGFloat(i) * rowHeight
-            let yMax = CGFloat(i + 1) * rowHeight
+            let yMax = CGFloat(i + Constants.next) * rowHeight
             if (yMin ..< yMax).contains(touchLocation.y) {
                 return i
             }
@@ -153,7 +145,18 @@ public class GameboardView: UIView {
         markView.frame = CGRect(x: CGFloat(position.column) * columnWidth,
                                 y: CGFloat(position.row) * rowHeight,
                                 width: columnWidth,
-                                height: rowHeight).insetBy(dx: 0.5 * Constants.lineWidth,
-                                                           dy: 0.5 * Constants.lineWidth)
+                                height: rowHeight).insetBy(
+                                    dx: Constants.insetMultiplier * Constants.lineWidth,
+                                    dy: Constants.insetMultiplier * Constants.lineWidth)
+    }
+}
+
+// MARK: - Constants
+private extension GameboardView {
+    enum Constants {
+        static let lineColor: UIColor = .gray
+        static let lineWidth: CGFloat = 7
+        static let insetMultiplier: Double = 0.5
+        static let next: Int = 1
     }
 }

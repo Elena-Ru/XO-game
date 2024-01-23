@@ -7,17 +7,27 @@
 
 import UIKit
 
-class PlayerInputBGState: GameState {
+// MARK: - GameEndedState
+final class PlayerInputBGState: GameState {
     
-    public private(set) var isCompleted = false
-    public let markViewPrototype: MarkView
-    public let player: Player
-    public var count: Int!
+    // MARK: Properties
+    private(set) var isCompleted = false
+    let markViewPrototype: MarkView
+    let player: Player
+    var count: Int!
     private(set) weak var gameVC: GameViewController?
     private(set) weak var gameboard: Gameboard?
     private(set) weak var gameboardView: GameboardView?
     
-    init(player: Player, markViewPrototype: MarkView, gameVC: GameViewController, gameboard: Gameboard, count: Int, gameboardView: GameboardView) {
+    // MARK: Initializer
+    init(
+        player: Player,
+        markViewPrototype: MarkView,
+        gameVC: GameViewController,
+        gameboard: Gameboard,
+        count: Int,
+        gameboardView: GameboardView
+    ) {
         self.player = player
         self.count = count
         self.markViewPrototype = markViewPrototype
@@ -26,7 +36,8 @@ class PlayerInputBGState: GameState {
         self.gameboardView = gameboardView
     }
     
-    public func begin() {
+    // MARK: Methods
+    func begin() {
             switch self.player {
             case .first:
                 self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = false
@@ -39,7 +50,7 @@ class PlayerInputBGState: GameState {
 
     }
     
-    public func addMark(at position: GameboardPosition) {
+    func addMark(at position: GameboardPosition) {
         guard let gameboardView = self.gameboardView,
               gameboardView.canPlaceMarkView(at: position) else {
             return
@@ -55,5 +66,4 @@ class PlayerInputBGState: GameState {
         count += 1
         self.isCompleted = true
     }
-    
 }

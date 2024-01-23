@@ -1,24 +1,25 @@
 //
-//  CustomPlayerLabel.swift
+//  CustomWinnerLabel.swift
 //  XO-game
 //
 //  Created by Елена Русских on 06.12.2022.
 //
-
 import UIKit
 
-class CustomPlayerLabel: UILabel {
+// MARK: - BoldBlackLabel
+final class BoldBlackLabel: UILabel {
+    
+    // MARK: Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-     init(title: String) {
+    init(title: String) {
         super.init(frame: .zero)
-        textColor = .darkGray
+        textColor = .black
         text = title
-        font = UIFont.systemFont(ofSize: 18)
+        font = UIFont.boldSystemFont(ofSize: 35)
         textAlignment = .center
-        translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {
