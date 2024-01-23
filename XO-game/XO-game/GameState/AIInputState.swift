@@ -9,6 +9,7 @@ import UIKit
 
 // MARK: - AIInputState
 final class AIInputState: GameState {
+    
     // MARK: Properties
     private(set) var isCompleted: Bool = false
     let markViewPrototype: MarkView
@@ -18,7 +19,14 @@ final class AIInputState: GameState {
     private(set) weak var gameboardView: GameboardView?
     
     // MARK: Initializer
-    init(isCompleted: Bool, markViewPrototype: MarkView, player: Player, gameVC: GameViewController? = nil, gameboard: Gameboard? = nil, gameboardView: GameboardView? = nil) {
+    init(
+        isCompleted: Bool,
+        markViewPrototype: MarkView,
+        player: Player,
+        gameVC: GameViewController? = nil,
+        gameboard: Gameboard? = nil,
+        gameboardView: GameboardView? = nil
+    ) {
         self.isCompleted = isCompleted
         self.markViewPrototype = markViewPrototype
         self.player = player
@@ -29,16 +37,16 @@ final class AIInputState: GameState {
     
     // MARK: Methods
     func begin() {
-       self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
-       self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = false
-       self.gameVC?.rootView.winnerLabel.isHidden = true
+       gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
+       gameVC?.rootView.secondPlayerTurnLabel.isHidden = false
+       gameVC?.rootView.winnerLabel.isHidden = true
 
-       var xIndex = Int.random(in: 0...2)
-       var yIndex = Int.random(in: 0...2)
+       var xIndex = Int.random(in: Constants.minIndex...Constants.maxIndex)
+       var yIndex = Int.random(in: Constants.minIndex...Constants.maxIndex)
        
        while gameboard?.positions[xIndex][yIndex] != nil {
-           xIndex = Int.random(in: 0...2)
-           yIndex = Int.random(in: 0...2)
+           xIndex = Int.random(in: Constants.minIndex...Constants.maxIndex)
+           yIndex = Int.random(in: Constants.minIndex...Constants.maxIndex)
        }
        
        addMark(at: GameboardPosition(column: xIndex, row: yIndex))
@@ -46,14 +54,21 @@ final class AIInputState: GameState {
     }
     
     func addMark(at position: GameboardPosition) {
-       guard let gameboardView = self.gameboardView,
+       guard let gameboardView = gameboardView,
              gameboardView.canPlaceMarkView(at: position)
         else {
            return
        }
-       log(.playerInput(player: self.player, position: position))
-       self.gameboard?.setPlayer(self.player, at: position)
-       self.gameboardView?.placeMarkView(self.markViewPrototype.copy(), at: position)
-       self.isCompleted = true
+       log(.playerInput(player: player, position: position))
+       gameboard?.setPlayer(player, at: position)
+       gameboardView.placeMarkView(markViewPrototype.copy(), at: position)
+       isCompleted = true
+    }
+}
+
+private extension AIInputState {
+    enum Constants {
+        static let minIndex: Int = .zero
+        static let maxIndex: Int = 2
     }
 }

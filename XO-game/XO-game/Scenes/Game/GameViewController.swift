@@ -50,7 +50,7 @@ final class GameViewController: UIViewController {
         case .withHuman, .withAI:
             self.currentState = PlayerInputState(player: .first, markViewPrototype: player.markViewPrototype , gameVC: self, gameboard: gameboard, gameboardView: rootView.gameboardView)
         case .blindGame:
-            self.currentState = PlayerInputBGState(player: .first, markViewPrototype: player.markViewPrototype , gameVC: self, gameboard: gameboard, count: 0, gameboardView: rootView.gameboardView)
+            self.currentState = PlayerInputBGState(player: .first, markViewPrototype: player.markViewPrototype , gameVC: self, gameboard: gameboard, count: .zero, gameboardView: rootView.gameboardView)
         }
     }
     
@@ -95,7 +95,7 @@ final class GameViewController: UIViewController {
             if let playerInputState = currentState as? PlayerInputBGState {
                 var player = playerInputState.player
                 var prototype = player.markViewPrototype
-                if playerInputState.count < 5 {
+                if playerInputState.count < Constants.maximumPlayerInputState {
                     self.currentState = PlayerInputBGState(
                         player: player,
                         markViewPrototype: prototype,
@@ -120,7 +120,7 @@ final class GameViewController: UIViewController {
                             markViewPrototype: prototype,
                             gameVC: self,
                             gameboard: gameboard,
-                            count: 0,
+                            count: .zero,
                             gameboardView: rootView.gameboardView)
                     }
                 }
@@ -169,3 +169,8 @@ final class GameViewController: UIViewController {
     }
 }
 
+private extension GameViewController {
+    enum Constants {
+        static let maximumPlayerInputState: Int = 5
+    }
+}

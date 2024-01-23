@@ -19,7 +19,13 @@ class PlayerInputState: GameState {
     private(set) weak var gameboardView: GameboardView?
     
     // MARK: Initializer
-    init(player: Player, markViewPrototype: MarkView, gameVC: GameViewController, gameboard: Gameboard, gameboardView: GameboardView) {
+    init(
+        player: Player,
+        markViewPrototype: MarkView,
+        gameVC: GameViewController,
+        gameboard: Gameboard,
+        gameboardView: GameboardView
+    ) {
         self.player = player
         self.markViewPrototype = markViewPrototype
         self.gameVC = gameVC
@@ -32,31 +38,31 @@ class PlayerInputState: GameState {
         if gameVC?.gameMode == .withHuman{
             switch self.player {
             case .first:
-                self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = false
-                self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
+                gameVC?.rootView.firstPlayerTurnLabel.isHidden = false
+                gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
             case .second:
-                self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
-                self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = false
+                gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
+                gameVC?.rootView.secondPlayerTurnLabel.isHidden = false
             }
         } else {
-            self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = false
-            self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
+            gameVC?.rootView.firstPlayerTurnLabel.isHidden = false
+            gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
         }
-        self.gameVC?.rootView.winnerLabel.isHidden = true
+        gameVC?.rootView.winnerLabel.isHidden = true
 
     }
 
     func addMark(at position: GameboardPosition) {
         guard 
-            let gameboardView = self.gameboardView,
+            let gameboardView = gameboardView,
             gameboardView.canPlaceMarkView(at: position)
         else {
             return
         }
-        log(.playerInput(player: self.player, position: position))
-        self.gameboard?.setPlayer(self.player, at: position)
-        self.gameboardView?.placeMarkView(self.markViewPrototype.copy(), at: position)
-        self.isCompleted = true
+        log(.playerInput(player: player, position: position))
+        gameboard?.setPlayer(player, at: position)
+        gameboardView.placeMarkView(markViewPrototype.copy(), at: position)
+        isCompleted = true
     }
     
 }

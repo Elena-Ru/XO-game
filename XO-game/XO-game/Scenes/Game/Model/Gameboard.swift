@@ -37,8 +37,8 @@ final class Gameboard {
     }
     
     func friendshipCase() -> Bool {
-        for i in 0 ..< GameboardSize.columns {
-            for j in 0 ..< GameboardSize.rows {
+        for i in .zero ..< GameboardSize.columns {
+            for j in .zero ..< GameboardSize.rows {
                 if positions[i][j] == nil {
                     return false
                 }
@@ -50,7 +50,7 @@ final class Gameboard {
     // MARK: Private methods
     private func initialPositions() -> [[Player?]] {
         var positions: [[Player?]] = []
-        for _ in 0 ..< GameboardSize.columns {
+        for _ in .zero ..< GameboardSize.columns {
             let rows = Array<Player?>(repeating: nil, count: GameboardSize.rows)
             positions.append(rows)
         }

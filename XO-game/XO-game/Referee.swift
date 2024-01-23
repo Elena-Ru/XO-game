@@ -37,8 +37,8 @@ final class Referee {
     
     private func generateWinsByColumn(result: inout [[GameboardPosition]]) {
         var array: [GameboardPosition] = []
-        for column in 0 ..< GameboardSize.columns {
-            for row in 0 ..< GameboardSize.rows {
+        for column in .zero ..< GameboardSize.columns {
+            for row in .zero ..< GameboardSize.rows {
                 array.append(GameboardPosition(column: column, row: row))
             }
             result.append(array)
@@ -48,8 +48,8 @@ final class Referee {
     
     private func generateWinsByRow(result: inout [[GameboardPosition]]) {
         var array: [GameboardPosition] = []
-        for row in 0 ..< GameboardSize.rows {
-            for column in 0 ..< GameboardSize.columns {
+        for row in .zero ..< GameboardSize.rows {
+            for column in .zero ..< GameboardSize.columns {
                 array.append(GameboardPosition(column: column, row: row))
             }
             result.append(array)
@@ -60,7 +60,7 @@ final class Referee {
     private func generateWinLeftDiagonal(result: inout [[GameboardPosition]]) {
         guard GameboardSize.columns == GameboardSize.rows else { return }
         var array: [GameboardPosition] = []
-        for i in 0 ..< GameboardSize.columns {
+        for i in .zero ..< GameboardSize.columns {
             array.append(GameboardPosition(column: i, row: i))
         }
         result.append(array)
@@ -69,8 +69,8 @@ final class Referee {
     private func generateWinRightDiagonal(result: inout [[GameboardPosition]]) {
         guard GameboardSize.columns == GameboardSize.rows else { return }
         var array: [GameboardPosition] = []
-        for i in 0 ..< GameboardSize.rows {
-            array.append(GameboardPosition(column: i, row: GameboardSize.rows - 1 - i))
+        for i in .zero ..< GameboardSize.rows {
+            array.append(GameboardPosition(column: i, row: GameboardSize.rows - Constants.previous - i))
         }
         result.append(array)
     }
@@ -82,5 +82,11 @@ final class Referee {
             }
         }
         return false
+    }
+}
+
+private extension Referee {
+    enum Constants {
+        static let previous: Int = 1
     }
 }

@@ -20,8 +20,8 @@ final class RoundedGreenButton: UIButton {
         layer.backgroundColor = #colorLiteral(red: 0.1957847476, green: 0.8436268568, blue: 0.2952730954, alpha: 1)
         setTitle(title, for: .normal)
         setTitleColor(.white, for: .normal)
-        titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        layer.cornerRadius = 20
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: Constants.fontSize)
+        layer.cornerRadius = Constants.cornerRadius
     }
     
     required init?(coder: NSCoder) {
@@ -29,3 +29,10 @@ final class RoundedGreenButton: UIButton {
     }
 }
 
+// MARK: - Constants
+private extension RoundedGreenButton {
+    enum Constants {
+        static let cornerRadius: CGFloat = 20
+        static let fontSize: CGFloat = 20
+    }
+}

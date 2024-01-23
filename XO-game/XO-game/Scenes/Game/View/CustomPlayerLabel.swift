@@ -19,11 +19,18 @@ final class CustomPlayerLabel: UILabel {
         super.init(frame: .zero)
         textColor = .darkGray
         text = title
-        font = UIFont.systemFont(ofSize: 18)
+         font = UIFont.systemFont(ofSize: Constants.fontSize)
         textAlignment = .center
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - Constants
+private extension CustomPlayerLabel {
+    enum Constants {
+        static let fontSize: CGFloat = 18
     }
 }

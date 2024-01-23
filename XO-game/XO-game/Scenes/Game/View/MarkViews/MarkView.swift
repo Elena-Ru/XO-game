@@ -95,6 +95,7 @@ class MarkView: UIView, Copying {
     }
 }
 
+// MARK: - Constants
 private extension MarkView {
     enum Constants {
         static let lineWidth: CGFloat = 7

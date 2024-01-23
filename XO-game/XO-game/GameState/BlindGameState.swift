@@ -40,8 +40,8 @@ final class BlindGameState: GameState {
         var secondPlayerPositions = gameboard?.secondPlayerpositions
             switch self.player {
             case .first:
-                self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = false
-                self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
+                gameVC?.rootView.firstPlayerTurnLabel.isHidden = false
+                gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
                 guard (firstPlayerPositions?.count)! > 1  
                 else {
                      return
@@ -53,8 +53,8 @@ final class BlindGameState: GameState {
                     position = (firstPlayerPositions?.first)!
                 }
             case .second:
-                self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
-                self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = false
+                gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
+                gameVC?.rootView.secondPlayerTurnLabel.isHidden = false
                 guard (secondPlayerPositions?.count)! > 1  
                 else {
                     return
@@ -67,8 +67,8 @@ final class BlindGameState: GameState {
                     position = (secondPlayerPositions?.first)!
                 }
             }
-        self.gameVC?.rootView.winnerLabel.isHidden = true
-        self.gameVC?.rootView.nextButton.isHidden = false
+        gameVC?.rootView.winnerLabel.isHidden = true
+        gameVC?.rootView.nextButton.isHidden = false
         
         addMark(at: position)
         if self.player == .first {
@@ -80,14 +80,14 @@ final class BlindGameState: GameState {
     
     func addMark(at position: GameboardPosition) {
         guard 
-            let gameboardView = self.gameboardView,
+            let gameboardView = gameboardView,
             gameboardView.canPlaceMarkView(at: position)
         else {
             return
         }
-        log(.playerInput(player: self.player, position: position))
-        self.gameboard?.setPlayer(self.player, at: position)
-        self.gameboardView?.placeMarkView(self.markViewPrototype.copy(), at: position)
-        self.isCompleted = true
+        log(.playerInput(player: player, position: position))
+        gameboard?.setPlayer(player, at: position)
+        gameboardView.placeMarkView(markViewPrototype.copy(), at: position)
+        isCompleted = true
     }
 }

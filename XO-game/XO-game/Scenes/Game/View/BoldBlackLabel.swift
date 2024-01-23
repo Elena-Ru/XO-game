@@ -18,11 +18,18 @@ final class BoldBlackLabel: UILabel {
         super.init(frame: .zero)
         textColor = .black
         text = title
-        font = UIFont.boldSystemFont(ofSize: 35)
+        font = UIFont.boldSystemFont(ofSize: Constants.fontSize)
         textAlignment = .center
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - Constants
+private extension BoldBlackLabel {
+    enum Constants {
+        static let fontSize: CGFloat = 35
     }
 }

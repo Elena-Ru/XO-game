@@ -40,11 +40,11 @@ final class PlayerInputBGState: GameState {
     func begin() {
             switch self.player {
             case .first:
-                self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = false
-                self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
+                gameVC?.rootView.firstPlayerTurnLabel.isHidden = false
+                gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
             case .second:
-                self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
-                self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = false
+                gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
+                gameVC?.rootView.secondPlayerTurnLabel.isHidden = false
             }
         self.gameVC?.rootView.winnerLabel.isHidden = true
 
@@ -57,13 +57,19 @@ final class PlayerInputBGState: GameState {
         }
         switch self.player{
         case .first:
-            self.gameboard?.firstPlayerpositions.append(position)
+            gameboard?.firstPlayerpositions.append(position)
         case .second:
-            self.gameboard?.secondPlayerpositions.append(position)
+            gameboard?.secondPlayerpositions.append(position)
         }
         
-        self.gameboardView?.placeMarkView(self.markViewPrototype.copy(), at: position)
-        count += 1
-        self.isCompleted = true
+        gameboardView.placeMarkView(self.markViewPrototype.copy(), at: position)
+        count += Constants.increseNumber
+        isCompleted = true
+    }
+}
+
+private extension PlayerInputBGState {
+    enum Constants {
+        static let increseNumber: Int = 1
     }
 }
