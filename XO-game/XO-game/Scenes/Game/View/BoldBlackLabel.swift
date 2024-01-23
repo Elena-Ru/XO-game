@@ -20,7 +20,6 @@ final class BoldBlackLabel: UILabel {
         text = title
         font = UIFont.boldSystemFont(ofSize: 35)
         textAlignment = .center
-        translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {

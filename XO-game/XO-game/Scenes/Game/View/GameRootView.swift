@@ -11,13 +11,6 @@ import UIKit
 final class GameRootView: UIView {
     
     // MARK: Properties
-    var scroll: UIScrollView = {
-        let sv = UIScrollView()
-        sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.contentSize = CGSize(width: 400, height: 2300)
-        return sv
-    }()
-    
     var gameboardView : GameboardView = {
         let view = GameboardView()
         view.backgroundColor = .white
@@ -25,32 +18,29 @@ final class GameRootView: UIView {
     }()
     
     let firstPlayerTurnLabel: CustomPlayerLabel = {
-        let label = CustomPlayerLabel(title: "Player1")
-        return label
+        CustomPlayerLabel(title: Constants.Strings.firstPlayerTitle)
     }()
     
     let secondPlayerTurnLabel: CustomPlayerLabel = {
-        let label = CustomPlayerLabel(title: "Player2")
-        return label
+        CustomPlayerLabel(title: Constants.Strings.secondPlayerTitle)
     }()
     
     let winnerLabel: BoldBlackLabel = {
-        let label = BoldBlackLabel(title: "The winner is Player1")
-        return label
+        BoldBlackLabel(title: Constants.Strings.winnerLabelTitle)
     }()
     
     let restartButton: RoundedGreenButton = {
-        let btn = RoundedGreenButton(title: "Restart")
-        return btn
+        RoundedGreenButton(title: Constants.Strings.restartButtonTitle)
     }()
+    
     let nextButton: RightArrowButton = {
-        let btn = RightArrowButton()
-        return btn
+        RightArrowButton()
     }()
     
     // MARK: Initializer
     init() {
         super.init(frame: CGRect())
+        setupViews()
         setupLayout()
     }
     
@@ -59,51 +49,69 @@ final class GameRootView: UIView {
     }
     
     // MARK: Methods
+    private func setupViews() {
+        [
+            firstPlayerTurnLabel,
+            secondPlayerTurnLabel,
+            winnerLabel,
+            nextButton,
+            gameboardView,
+            restartButton
+        ].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            addSubview($0)
+        }
+    }
+    
     private func setupLayout() {
-        self.addSubview(scroll)
-        scroll.addSubview(firstPlayerTurnLabel)
-        scroll.addSubview(secondPlayerTurnLabel)
-        scroll.addSubview(winnerLabel)
-        scroll.addSubview(nextButton)
-        scroll.addSubview(gameboardView)
-        scroll.addSubview(restartButton)
-        
         NSLayoutConstraint.activate([
+            firstPlayerTurnLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
+            firstPlayerTurnLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             
-            scroll.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            scroll.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            scroll.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            scroll.heightAnchor.constraint(equalToConstant: 1200),
+            secondPlayerTurnLabel.topAnchor.constraint(equalTo: firstPlayerTurnLabel.topAnchor),
+            secondPlayerTurnLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: Constants.Layout.secondPlayerTurnLabelTrailingInset),
             
-            firstPlayerTurnLabel.topAnchor.constraint(equalTo: scroll.topAnchor, constant: 20),
-            firstPlayerTurnLabel.leadingAnchor.constraint(equalTo: scroll.leadingAnchor, constant: 20),
-            firstPlayerTurnLabel.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.4),
-            firstPlayerTurnLabel.heightAnchor.constraint(equalToConstant: 20),
-            
-            secondPlayerTurnLabel.topAnchor.constraint(equalTo: scroll.topAnchor, constant: 20),
-            secondPlayerTurnLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            secondPlayerTurnLabel.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.4),
-            secondPlayerTurnLabel.heightAnchor.constraint(equalToConstant: 20),
-            
-            winnerLabel.topAnchor.constraint(equalTo: firstPlayerTurnLabel.bottomAnchor, constant: 20),
+            winnerLabel.topAnchor.constraint(equalTo: firstPlayerTurnLabel.bottomAnchor, constant: Constants.Layout.winnerLabelTopInset),
             winnerLabel.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            winnerLabel.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.8),
-            winnerLabel.heightAnchor.constraint(equalToConstant: 35),
             
-            nextButton.topAnchor.constraint(equalTo: secondPlayerTurnLabel.bottomAnchor, constant: 20),
-            nextButton.trailingAnchor.constraint(equalTo: secondPlayerTurnLabel.trailingAnchor, constant: -60),
-            nextButton.widthAnchor.constraint(equalToConstant: 40),
-            nextButton.heightAnchor.constraint(equalToConstant: 40),
+            nextButton.topAnchor.constraint(equalTo: secondPlayerTurnLabel.bottomAnchor, constant: Constants.Layout.nextButtonTopInset),
+            nextButton.trailingAnchor.constraint(equalTo: secondPlayerTurnLabel.trailingAnchor, constant: Constants.Layout.nextButtonTrailingInset),
+            nextButton.widthAnchor.constraint(equalToConstant: Constants.Layout.nextButtonWidth),
+            nextButton.heightAnchor.constraint(equalToConstant: Constants.Layout.nextButtonHeight),
             
-            gameboardView.topAnchor.constraint(equalTo: winnerLabel.bottomAnchor, constant: 40),
+            gameboardView.topAnchor.constraint(equalTo: winnerLabel.bottomAnchor, constant: Constants.Layout.gameboardViewTopInset),
             gameboardView.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            gameboardView.heightAnchor.constraint(equalToConstant: 300),
-            gameboardView.widthAnchor.constraint(equalToConstant: 300),
+            gameboardView.heightAnchor.constraint(equalToConstant: Constants.Layout.gameboardViewHeight),
+            gameboardView.widthAnchor.constraint(equalToConstant: Constants.Layout.gameboardViewWidth),
             
             restartButton.topAnchor.constraint(equalTo: gameboardView.bottomAnchor, constant: 100),
             restartButton.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             restartButton.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.5),
             restartButton.heightAnchor.constraint(equalToConstant: 40)
         ])
+    }
+}
+
+// MARK: - Constants
+private extension GameRootView {
+    enum Constants {
+        enum Layout {
+            static let gameboardViewHeight: CGFloat = 300
+            static let gameboardViewWidth: CGFloat = 300
+            static let gameboardViewTopInset: CGFloat = 40
+            static let nextButtonWidth: CGFloat = 40
+            static let nextButtonHeight: CGFloat = 40
+            static let nextButtonTrailingInset: CGFloat = -60
+            static let nextButtonTopInset: CGFloat = 20
+            static let winnerLabelTopInset: CGFloat = 20
+            static let secondPlayerTurnLabelTrailingInset: CGFloat = -20
+        }
+        
+        enum Strings {
+            static let firstPlayerTitle: String = "Player1"
+            static let secondPlayerTitle: String = "Player2"
+            static let winnerLabelTitle: String = "The winner is Player1"
+            static let restartButtonTitle: String = "Restart"
+        }
     }
 }

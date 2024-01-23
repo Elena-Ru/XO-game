@@ -21,7 +21,6 @@ final class CustomPlayerLabel: UILabel {
         text = title
         font = UIFont.systemFont(ofSize: 18)
         textAlignment = .center
-        translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {

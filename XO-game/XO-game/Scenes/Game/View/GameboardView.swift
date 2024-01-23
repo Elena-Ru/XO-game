@@ -21,7 +21,6 @@ final class GameboardView: UIView {
     
     init() {
         super.init(frame: .zero)
-        translatesAutoresizingMaskIntoConstraints = false
         draw(frame)
     }
     

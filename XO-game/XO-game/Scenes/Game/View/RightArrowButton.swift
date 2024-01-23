@@ -18,7 +18,6 @@ final class RightArrowButton: UIButton {
         contentHorizontalAlignment = .fill
         contentVerticalAlignment = .fill
         isHidden = true
-        translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {
