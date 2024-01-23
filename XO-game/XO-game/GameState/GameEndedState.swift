@@ -23,25 +23,34 @@ final class GameEndedState: GameState {
     
     // MARK: Methods
     func begin() {
-        self.gameVC?.rootView.winnerLabel.isHidden = false
+        gameVC?.rootView.winnerLabel.isHidden = false
         if let winner = winner {
-            self.gameVC?.rootView.winnerLabel.text = self.getWinnerName(from: winner) + " win"
+            gameVC?.rootView.winnerLabel.text = self.getWinnerName(from: winner) + Constants.win
         } else {
-            
-            self.gameVC?.rootView.winnerLabel.text = "No winner"
+            gameVC?.rootView.winnerLabel.text = Constants.noWinner
         }
-        self.gameVC?.rootView.nextButton.isHidden = true
-        self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
-        self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
+        gameVC?.rootView.nextButton.isHidden = true
+        gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
+        gameVC?.rootView.secondPlayerTurnLabel.isHidden = true
         log(.gameFinished(winner: self.winner))
     }
     
     private func getWinnerName( from winner: Player) -> String {
         switch winner {
-        case .first: return "1st player"
-        case .second: return "2nd player"
+        case .first: return Constants.firstPlayer
+        case .second: return Constants.secondPlayer
         }
     }
     
     func addMark(at position: GameboardPosition) {}
+}
+
+// MARK: - Constants
+private extension GameEndedState {
+    enum Constants {
+        static let firstPlayer: String = "1st player"
+        static let secondPlayer: String = "2nd player"
+        static let noWinner: String = "No winner"
+        static let win: String = " win"
+    }
 }
