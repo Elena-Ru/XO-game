@@ -65,29 +65,47 @@ final class GameRootView: UIView {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            firstPlayerTurnLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
-            firstPlayerTurnLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            firstPlayerTurnLabel.topAnchor.constraint(
+                equalTo: self.safeAreaLayoutGuide.topAnchor,
+                constant: Constants.Layout.firstPlayerTurnLabelTopInset),
+            firstPlayerTurnLabel.leadingAnchor.constraint(
+                equalTo: self.safeAreaLayoutGuide.leadingAnchor,
+                constant: Constants.Layout.firstPlayerTurnLabelLeadingInset),
             
             secondPlayerTurnLabel.topAnchor.constraint(equalTo: firstPlayerTurnLabel.topAnchor),
-            secondPlayerTurnLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: Constants.Layout.secondPlayerTurnLabelTrailingInset),
+            secondPlayerTurnLabel.trailingAnchor.constraint(
+                equalTo: self.safeAreaLayoutGuide.trailingAnchor,
+                constant: Constants.Layout.secondPlayerTurnLabelTrailingInset),
             
-            winnerLabel.topAnchor.constraint(equalTo: firstPlayerTurnLabel.bottomAnchor, constant: Constants.Layout.winnerLabelTopInset),
+            winnerLabel.topAnchor.constraint(
+                equalTo: firstPlayerTurnLabel.bottomAnchor,
+                constant: Constants.Layout.winnerLabelTopInset),
             winnerLabel.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             
-            nextButton.topAnchor.constraint(equalTo: secondPlayerTurnLabel.bottomAnchor, constant: Constants.Layout.nextButtonTopInset),
-            nextButton.trailingAnchor.constraint(equalTo: secondPlayerTurnLabel.trailingAnchor, constant: Constants.Layout.nextButtonTrailingInset),
+            nextButton.topAnchor.constraint(
+                equalTo: secondPlayerTurnLabel.bottomAnchor,
+                constant: Constants.Layout.nextButtonTopInset),
+            nextButton.trailingAnchor.constraint(
+                equalTo: secondPlayerTurnLabel.trailingAnchor,
+                constant: Constants.Layout.nextButtonTrailingInset),
             nextButton.widthAnchor.constraint(equalToConstant: Constants.Layout.nextButtonWidth),
             nextButton.heightAnchor.constraint(equalToConstant: Constants.Layout.nextButtonHeight),
             
-            gameboardView.topAnchor.constraint(equalTo: winnerLabel.bottomAnchor, constant: Constants.Layout.gameboardViewTopInset),
+            gameboardView.topAnchor.constraint(
+                equalTo: winnerLabel.bottomAnchor,
+                constant: Constants.Layout.gameboardViewTopInset),
             gameboardView.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             gameboardView.heightAnchor.constraint(equalToConstant: Constants.Layout.gameboardViewHeight),
             gameboardView.widthAnchor.constraint(equalToConstant: Constants.Layout.gameboardViewWidth),
             
-            restartButton.topAnchor.constraint(equalTo: gameboardView.bottomAnchor, constant: 100),
+            restartButton.topAnchor.constraint(
+                equalTo: gameboardView.bottomAnchor,
+                constant: Constants.Layout.restartButtonTopInset),
             restartButton.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            restartButton.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.5),
-            restartButton.heightAnchor.constraint(equalToConstant: 40)
+            restartButton.widthAnchor.constraint(
+                equalTo: self.safeAreaLayoutGuide.widthAnchor,
+                multiplier: Constants.Layout.multiplier),
+            restartButton.heightAnchor.constraint(equalToConstant: Constants.Layout.restartButtonHeight)
         ])
     }
 }
@@ -105,6 +123,11 @@ private extension GameRootView {
             static let nextButtonTopInset: CGFloat = 20
             static let winnerLabelTopInset: CGFloat = 20
             static let secondPlayerTurnLabelTrailingInset: CGFloat = -20
+            static let restartButtonHeight: CGFloat = 40
+            static let multiplier: Double = 0.5
+            static let restartButtonTopInset: CGFloat = 100
+            static let firstPlayerTurnLabelTopInset: CGFloat = 20
+            static let firstPlayerTurnLabelLeadingInset: CGFloat = 20
         }
         
         enum Strings {

@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - GameViewController
-final class GameViewController: UIViewController {
+final class GameViewController: UIViewController, GameViewInput {
 
     // MARK: Properties
     let rootView = GameRootView()
@@ -30,8 +30,8 @@ final class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.goToFirstState()
-        view.backgroundColor = .white
+        goToFirstState()
+        setupUI()
         rootView.gameboardView.onSelectPosition = { [weak self] position in
             guard let self = self else { return }
             self.currentState.addMark(at: position)
@@ -39,18 +39,37 @@ final class GameViewController: UIViewController {
                 self.goToNextState()
             }
         }
+        setupTargets()
+    }
+    
+    // MARK: Methods
+    private func setupUI() {
+        view.backgroundColor = .white
+    }
+    
+    private func setupTargets() {
         rootView.nextButton.addTarget(self, action: #selector(nextStepAction), for: .touchUpInside)
         rootView.restartButton.addTarget(self, action: #selector(restartAction), for: .touchUpInside)
     }
     
-    // MARK: Methods
     private func goToFirstState() {
         let player = Player.first
         switch gameMode {
         case .withHuman, .withAI:
-            self.currentState = PlayerInputState(player: .first, markViewPrototype: player.markViewPrototype , gameVC: self, gameboard: gameboard, gameboardView: rootView.gameboardView)
+            self.currentState = PlayerInputState(
+                player: .first,
+                markViewPrototype: player.markViewPrototype,
+                gameVC: self,
+                gameboard: gameboard,
+                gameboardView: rootView.gameboardView)
         case .blindGame:
-            self.currentState = PlayerInputBGState(player: .first, markViewPrototype: player.markViewPrototype , gameVC: self, gameboard: gameboard, count: 0, gameboardView: rootView.gameboardView)
+            self.currentState = PlayerInputBGState(
+                player: .first,
+                markViewPrototype: player.markViewPrototype,
+                gameVC: self,
+                gameboard: gameboard,
+                count: .zero,
+                gameboardView: rootView.gameboardView)
         }
     }
     
@@ -95,7 +114,7 @@ final class GameViewController: UIViewController {
             if let playerInputState = currentState as? PlayerInputBGState {
                 var player = playerInputState.player
                 var prototype = player.markViewPrototype
-                if playerInputState.count < 5 {
+                if playerInputState.count < Constants.maximumPlayerInputState {
                     self.currentState = PlayerInputBGState(
                         player: player,
                         markViewPrototype: prototype,
@@ -120,7 +139,7 @@ final class GameViewController: UIViewController {
                             markViewPrototype: prototype,
                             gameVC: self,
                             gameboard: gameboard,
-                            count: 0,
+                            count: .zero,
                             gameboardView: rootView.gameboardView)
                     }
                 }
@@ -169,3 +188,8 @@ final class GameViewController: UIViewController {
     }
 }
 
+private extension GameViewController {
+    enum Constants {
+        static let maximumPlayerInputState: Int = 5
+    }
+}
