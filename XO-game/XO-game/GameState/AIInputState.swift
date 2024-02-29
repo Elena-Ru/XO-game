@@ -7,15 +7,17 @@
 
 import UIKit
 
-public class AIInputState: GameState {
-    
-    public private(set) var isCompleted: Bool = false
-    public let markViewPrototype: MarkView
-    public let player: Player
+// MARK: - AIInputState
+final class AIInputState: GameState {
+    // MARK: Properties
+    private(set) var isCompleted: Bool = false
+    let markViewPrototype: MarkView
+    let player: Player
     private(set) weak var gameVC: GameViewController?
     private(set) weak var gameboard: Gameboard?
     private(set) weak var gameboardView: GameboardView?
     
+    // MARK: Initializer
     init(isCompleted: Bool, markViewPrototype: MarkView, player: Player, gameVC: GameViewController? = nil, gameboard: Gameboard? = nil, gameboardView: GameboardView? = nil) {
         self.isCompleted = isCompleted
         self.markViewPrototype = markViewPrototype
@@ -25,7 +27,8 @@ public class AIInputState: GameState {
         self.gameboardView = gameboardView
     }
     
-   public func begin() {
+    // MARK: Methods
+    func begin() {
        self.gameVC?.rootView.firstPlayerTurnLabel.isHidden = true
        self.gameVC?.rootView.secondPlayerTurnLabel.isHidden = false
        self.gameVC?.rootView.winnerLabel.isHidden = true
@@ -42,9 +45,10 @@ public class AIInputState: GameState {
        gameVC?.goToNextState()
     }
     
-   public func addMark(at position: GameboardPosition) {
+    func addMark(at position: GameboardPosition) {
        guard let gameboardView = self.gameboardView,
-             gameboardView.canPlaceMarkView(at: position) else {
+             gameboardView.canPlaceMarkView(at: position)
+        else {
            return
        }
        log(.playerInput(player: self.player, position: position))

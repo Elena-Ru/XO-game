@@ -7,19 +7,22 @@
 
 import UIKit
 
-public class GameEndedState: GameState {
-
-    public let isCompleted = false
-    public let winner: Player?
+// MARK: - GameEndedState
+final class GameEndedState: GameState {
+    
+    // MARK: Properties
+    let isCompleted = false
+    let winner: Player?
     private(set) weak var gameVC: GameViewController?
     
+    // MARK: Initializer
     init(winner: Player?, gameVC: GameViewController) {
         self.winner = winner
         self.gameVC = gameVC
     }
     
-    public func begin() {
-        
+    // MARK: Methods
+    func begin() {
         self.gameVC?.rootView.winnerLabel.isHidden = false
         if let winner = winner {
             self.gameVC?.rootView.winnerLabel.text = self.getWinnerName(from: winner) + " win"
@@ -40,5 +43,5 @@ public class GameEndedState: GameState {
         }
     }
     
-    public func addMark(at position: GameboardPosition) {}
+    func addMark(at position: GameboardPosition) {}
 }
